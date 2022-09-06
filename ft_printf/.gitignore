@@ -1,0 +1,8 @@
+tests/
+.vscode/
+a.out
+libft/.vscode/
+libft/libft.a
+printfTester-master/
+ft_printf.o
+libftprintf.a
