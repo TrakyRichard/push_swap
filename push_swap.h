@@ -17,15 +17,16 @@
 
 typedef struct s_stack
 {
-	int		top;
+	int		val;
 	s_stack	next;
 	s_stack prev;
-}
+} t_stack;
 
 typedef	struct s_push_swap
 {
 	s_stack	*stack_a;
 	s_stack	*stack_b;
 	int		nbre_of_swap;
-}
+} t_push_swap;
+
 #endif
