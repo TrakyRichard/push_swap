@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:41:36 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/15 13:37:29 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/09/15 14:38:31 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,8 @@ void push_swap(int argc, char **argv)
 	read_argv(argc, argv, &push_swap);
 	if (ft_is_sorted(&push_swap.stack_a.tail) == 0)
 	{
-		// 	mvt_top_to_bottom(&push_swap.stack_a, "ra ");
-		// 	mvt_bottom_to_top(&push_swap.stack_a, "rra");
-		// 	mvt_top_to_bottom(&push_swap.stack_b, "rb ");
-		// 	take_top_x_to_top_y(&push_swap.stack_a, &push_swap.stack_b, "pa");
-		// 	ft_display_stack(&push_swap.stack_b.tail);
-		// ft_printf("\n");
-		// 	take_top_x_to_top_y(&push_swap.stack_b, &push_swap.stack_a, "pb");
-		// take_top_x_to_top_y(&push_swap.stack_a, &push_swap.stack_b, "pa");
-		// ft_free_stack(&push_swap.stack_a.tail, &push_swap.stack_a.head);
 		swap_with_next_node(&push_swap.stack_a, "sa ");
 		ft_display_stack(&push_swap.stack_a.tail);
-
 		return;
 	}
 	ft_printf("The list is not sorted yet");
