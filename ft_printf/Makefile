@@ -1,5 +1,5 @@
 NAME = libftprintf.a
-LIBFT = ./libft
+LIBFT = ../libft
 RM = rm -f
 SRCS = 	ft_printf.c \
 			src/ft_print_char.c \
@@ -15,8 +15,8 @@ FLAGS = -c -Wall -Wextra -Werror
 OBJS = $(SRCS:.c=.o)
 
 $(NAME):	$(OBJS)
-					make -C ./libft
-					cp libft/libft.a $(NAME)
+					make -C $(LIBFT)
+					cp $(LIBFT)/libft.a $(NAME)
 					ar rcs $(NAME) $(OBJS)
 
 
