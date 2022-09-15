@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_ops.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/15 08:40:52 by richard          ###   ########.fr       */
+/*   Updated: 2022/09/15 10:53:09 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void ft_unshift(t_stack_bdle **stack_bdle, int data)
     new_node->data = data;
     new_node->next = (*stack_bdle)->tail;
     new_node->prev = NULL;
-    if ((*stack_bdle)->tail == NULL)
+    if ((*stack_bdle)->head == NULL)
     {
-        (*stack_bdle)->tail = new_node;
         (*stack_bdle)->head = new_node;
+        (*stack_bdle)->tail = new_node;
     }
     else
     {
@@ -83,13 +83,13 @@ int ft_pop(t_stack_bdle **stack)
     int data;
     t_stack *tmp;
 
-    if ((*stack)->tail == NULL)
-        ft_error("stack->tail is empty \n");
-    data = (*stack)->tail->data;
-    tmp = (*stack)->tail;
-    (*stack)->tail = (*stack)->tail->prev;
-    if ((*stack)->tail != NULL)
-        (*stack)->tail->next = NULL;
+    if ((*stack)->head == NULL)
+        ft_error("stack is empty \n");
+    data = (*stack)->head->data;
+    tmp = (*stack)->head;
+    (*stack)->head = (*stack)->head->prev;
+    if ((*stack)->head != NULL)
+        (*stack)->head->next = NULL;
     (*stack)->size--;
     free(tmp);
     return (data);
@@ -125,4 +125,18 @@ void ft_display_stack(t_stack **tail)
         tmp = tmp->next;
     }
 }
+
+/* Display the informations into stack a */
+void ft_rev_stack(t_stack **head)
+{
+    t_stack *tmp;
+
+    tmp = *head;
+    while (tmp != NULL)
+    {
+        ft_putnbr_fd(tmp->data, 1);
+        tmp = tmp->prev;
+    }
+}
+
 

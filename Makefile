@@ -5,7 +5,7 @@ LIBFT = ./libft
 FT_PRINTF = ./ft_printf
 RM = rm -f
 SRCS = push_swap.c ./shared/moves.c ./shared/operations.c ./helpers/helpers.c ./helpers/error.c ./helpers/free.c \
-		./helpers/stack_ops.c
+		./helpers/stack_ops.c ./helpers/swap.c
 
 CC = gcc
 FLAGS = -c -Wall -Wextra -Werror
@@ -28,7 +28,7 @@ fclean : clean
 		@make fclean -C $(LIBFT)
 		@make fclean -C $(FT_PRINTF)
 		@$(RM) $(NAME)
-	
+
 re : fclean $(NAME)
 
 .PHONY : all clean fclean re

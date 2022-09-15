@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/15 08:18:12 by richard          ###   ########.fr       */
+/*   Updated: 2022/09/15 14:02:17 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int ft_pop(t_stack_bdle **stack);
 void ft_unshift(t_stack_bdle **stack_bdle, int data);
 int ft_shift(t_stack_bdle **stack);
 void ft_display_stack(t_stack **stack);
-void ft_display_stack_reverse(t_stack **head);
+void ft_rev_stack(t_stack **head);
 void init_stack(t_push_swap *push_swap);
 
 /* Helper functions */
@@ -55,20 +55,19 @@ void ft_error(char *str);
 void ft_free_dbl_point(char **str);
 void ft_free_stack(t_stack **tail, t_stack **head);
 int ft_is_sorted(t_stack **tail);
+void swap_node(t_stack **stack1, t_stack **stack2);
+void swap_int(int *a1, int *a2);
 
 /* Sorting functions */
 void sort_stack(t_push_swap *push_swap);
-/* Sorting operation */
-void pa(t_stack_bdle *st_bdl_a, t_stack_bdle *st_bdl_b, char *inst);
-void pb(t_stack_bdle *st_bdl_a, t_stack_bdle *st_bdl_b, char *inst);
-void sa(t_stack_bdle *st_bdl_a, char *inst);
-void sb(t_stack_bdle *st_bdl_b, char *inst);
+
+/* moves operation */
+void take_top_x_to_top_y(t_stack_bdle *st_bdl_x, t_stack_bdle *st_bdl_y, char *inst);
+void swap_with_next_node(t_stack_bdle *st_bdl, char *inst);
 void ss(t_stack_bdle *st_bdl_a, t_stack_bdle *st_bdl_b);
-void ra(t_stack_bdle *st_bdl_a, char *inst);
-void rb(t_stack_bdle *st_bdl_b, char *inst);
+void mvt_top_to_bottom(t_stack_bdle *st_bdl, char *inst);
 void rr(t_stack_bdle *st_bdl_a, t_stack_bdle *st_bdl_b);
-void rra(t_stack_bdle *st_bdl_a, char *inst);
-void rrb(t_stack_bdle *st_bdl_b, char *inst);
+void mvt_bottom_to_top(t_stack_bdle *st_bdl_a, char *inst);
 void rrr(t_stack_bdle *st_bdl_a, t_stack_bdle *st_bdl_b);
 
 #endif
