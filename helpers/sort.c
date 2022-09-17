@@ -6,7 +6,7 @@
 /*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/15 08:34:04 by richard          ###   ########.fr       */
+/*   Updated: 2022/09/16 15:09:52 by richard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void sort_stack(t_push_swap *push_swap)
 }
 
 /* Selection sort */
-void ft_sort_stack(t_stack **tail, t_stack **head)
+void ft_sort_stack(t_stack **head, t_stack **tail)
 {
     t_stack *tmp;
     t_stack *tmp2;
@@ -30,8 +30,8 @@ void ft_sort_stack(t_stack **tail, t_stack **head)
     i = 0;
     j = 0;
     min = 0;
-    tmp = *tail;
-    tmp2 = *tail;
+    tmp = *head;
+    tmp2 = *head;
     while (tmp->next != NULL)
     {
         tmp = tmp->next;
@@ -49,7 +49,7 @@ void ft_sort_stack(t_stack **tail, t_stack **head)
             }
             tmp2 = tmp2->next;
         }
-        tmp2 = *tail;
+        tmp2 = *head;
         j++;
     }
 }

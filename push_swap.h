@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/15 14:38:13 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/09/17 15:47:20 by richard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ typedef struct s_stack
 
 typedef struct s_stack_bdle
 {
-	t_stack *head;
 	t_stack *tail;
+	t_stack *head;
 	int size;
 } t_stack_bdle;
 
@@ -45,7 +45,7 @@ int ft_pop(t_stack_bdle **stack);
 void ft_unshift(t_stack_bdle **stack_bdle, int data);
 int ft_shift(t_stack_bdle **stack);
 void ft_display_stack(t_stack **stack);
-void ft_rev_stack(t_stack **head);
+void ft_rev_stack(t_stack **tail);
 void init_stack(t_push_swap *push_swap);
 
 /* Helper functions */
@@ -53,8 +53,8 @@ void read_argv(int argc, char **argv, t_push_swap *push_swap);
 int ft_digit(char *str);
 void ft_error(char *str);
 void ft_free_dbl_point(char **str);
-void ft_free_stack(t_stack **tail, t_stack **head);
-int ft_is_sorted(t_stack **tail);
+void ft_free_stack(t_stack **head, t_stack **tail);
+int ft_is_sorted(t_stack **head);
 void swap_node(t_stack **stack1, t_stack **stack2);
 void swap_int(int *a1, int *a2);
 

@@ -6,7 +6,7 @@
 /*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/15 04:29:34 by richard          ###   ########.fr       */
+/*   Updated: 2022/09/16 15:09:52 by richard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,20 @@ void ft_free_dbl_point(char **str)
 }
 
 /* Function to swap two elements into a stack */
-void ft_free_stack(t_stack **tail, t_stack **head)
+void ft_free_stack(t_stack **head, t_stack **tail)
 {
     t_stack *tmp;
 
-    if (*tail == NULL)
+    if (*head == NULL)
         return;
 
-    tmp = *tail;
+    tmp = *head;
     while (tmp->next != NULL)
     {
         tmp = tmp->next;
         free(tmp->prev);
     }
     free(tmp);
-    *tail = NULL;
     *head = NULL;
+    *tail = NULL;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/15 14:35:52 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/09/16 15:09:52 by richard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void take_top_x_to_top_y(t_stack_bdle *st_bdl_x, t_stack_bdle *st_bdl_y, char *i
 {
     if (st_bdl_x->size == 0)
         return;
-    ft_unshift(&st_bdl_y, st_bdl_x->head->data);
+    ft_unshift(&st_bdl_y, st_bdl_x->tail->data);
     ft_pop(&st_bdl_x);
     if (inst != NULL)
         ft_putstr_fd(inst, 1);
@@ -34,13 +34,13 @@ void swap_with_next_node(t_stack_bdle *st_bdl, char *inst)
     if (st_bdl->size < 2)
         return;
     ft_shift(&st_bdl);
-    tmp = st_bdl->tail->data;
+    tmp = st_bdl->head->data;
     new_node = (t_stack *)malloc(sizeof(t_stack));
     if (new_node == NULL)
         ft_error("Error: malloc failed in ft_unshift");
-    new_node->next = st_bdl->tail->next;
-    st_bdl->tail->next = new_node;
-    new_node->prev = st_bdl->tail;
+    new_node->next = st_bdl->head->next;
+    st_bdl->head->next = new_node;
+    new_node->prev = st_bdl->head;
     if (inst != NULL)
         ft_putstr_fd(inst, 1);
 }
@@ -60,7 +60,7 @@ void mvt_top_to_bottom(t_stack_bdle *st_bdl, char *inst)
 
     if (st_bdl->size < 2)
         return;
-    tmp = st_bdl->head->data;
+    tmp = st_bdl->tail->data;
     ft_pop(&st_bdl);
     ft_unshift(&st_bdl, tmp);
     if (inst != NULL)
@@ -82,7 +82,7 @@ void mvt_bottom_to_top(t_stack_bdle *st_bdl_a, char *inst)
 
     if (st_bdl_a->size < 2)
         return;
-    tmp = st_bdl_a->tail->data;
+    tmp = st_bdl_a->head->data;
     ft_shift(&st_bdl_a);
     ft_push(&st_bdl_a, tmp);
     if (inst != NULL)

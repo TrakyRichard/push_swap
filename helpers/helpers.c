@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/15 14:09:27 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/09/16 15:09:52 by richard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ int ft_digit(char *str)
 }
 
 /* check if the stack is already sorted and return it */
-int ft_is_sorted(t_stack **tail)
+int ft_is_sorted(t_stack **head)
 {
     t_stack *tmp;
 
-    tmp = *tail;
+    tmp = *head;
     while (tmp->next != NULL)
     {
         if (tmp->data > tmp->next->data)
