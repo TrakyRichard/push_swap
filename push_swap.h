@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/18 03:45:27 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/09/18 03:49:34 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void split_to_get_chunk(t_stack **new_chunk, t_stack ***head_ref);
 void init_sort_var(int *counter, t_stack **head_ref, t_stack **head, \
 					t_stack **sorted_stack, t_stack **new_chunk);
 t_stack *richard_sort(t_stack **head, int stack_size);
-
 
 /* Sorting functions */
 void sort_stack(t_push_swap *push_swap);
