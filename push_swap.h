@@ -3,19 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/17 15:47:20 by richard          ###   ########.fr       */
+/*   Updated: 2022/09/18 03:45:27 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 #define PUSH_SWAP_H
 
+#ifndef RUN
+#define RUN = 32;
+#endif
+
 #include <unistd.h>
 #include <stddef.h>
 #include <stdio.h>
+
 typedef struct s_stack
 {
 	int data;
@@ -57,6 +62,14 @@ void ft_free_stack(t_stack **head, t_stack **tail);
 int ft_is_sorted(t_stack **head);
 void swap_node(t_stack **stack1, t_stack **stack2);
 void swap_int(int *a1, int *a2);
+t_stack *n_split(t_stack **head, int size);
+void insertion_sort(t_stack **head);
+t_stack *ft_merge(t_stack *left, t_stack *right);
+void split_to_get_chunk(t_stack **new_chunk, t_stack ***head_ref);
+void init_sort_var(int *counter, t_stack **head_ref, t_stack **head, \
+					t_stack **sorted_stack, t_stack **new_chunk);
+t_stack *richard_sort(t_stack **head, int stack_size);
+
 
 /* Sorting functions */
 void sort_stack(t_push_swap *push_swap);
@@ -69,5 +82,9 @@ void mvt_top_to_bottom(t_stack_bdle *st_bdl, char *inst);
 void rr(t_stack_bdle *st_bdl_a, t_stack_bdle *st_bdl_b);
 void mvt_bottom_to_top(t_stack_bdle *st_bdl_a, char *inst);
 void rrr(t_stack_bdle *st_bdl_a, t_stack_bdle *st_bdl_b);
+
+
+/* merge functions */
+t_stack *ft_merge(t_stack *left, t_stack *right);
 
 #endif

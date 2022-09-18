@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_ops.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/16 15:09:52 by richard          ###   ########.fr       */
+/*   Updated: 2022/09/18 02:52:44 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,4 +139,10 @@ void ft_rev_stack(t_stack **tail)
     }
 }
 
+/* Merge two stacks linked list */
+void ft_merge_two_stacks(t_stack **stack_one, t_stack **stack_two)
+{
+    (*stack_one)->next = *stack_two;
+    (*stack_two)->prev = (*stack_one)->prev;
+}
 
