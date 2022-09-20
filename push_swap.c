@@ -6,7 +6,7 @@
 /*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:41:36 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/20 09:06:32 by richard          ###   ########.fr       */
+/*   Updated: 2022/09/20 21:59:39 by richard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ void push_swap(int argc, char **argv)
 		return;
 	}
 	ft_sort_stack(&push_swap);
-	ft_printf("The list is not sorted yet");
 	return;
 }

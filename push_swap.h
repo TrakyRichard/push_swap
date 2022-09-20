@@ -6,7 +6,7 @@
 /*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/20 21:11:12 by richard          ###   ########.fr       */
+/*   Updated: 2022/09/20 22:02:11 by richard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define PUSH_SWAP_H
 
 #ifndef RUN
-#define RUN 5
+#define RUN 32
 #endif
 
 #include <unistd.h>
