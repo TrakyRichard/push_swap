@@ -6,7 +6,7 @@
 /*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/16 15:09:52 by richard          ###   ########.fr       */
+/*   Updated: 2022/09/20 08:35:52 by richard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../ft_printf/ft_printf.h"
 
 /* Read the number passed into the argv into the pushswap function */
-void read_argv(int argc, char *argv[], t_push_swap *push_swap)
+void ft_read_argv(int argc, char *argv[], t_push_swap *push_swap)
 {
     int i;
     char **str;
@@ -69,6 +69,14 @@ int ft_is_sorted(t_stack **head)
         tmp = tmp->next;
     }
     return (0);
+}
+
+/* initialize stack bundle */
+void ft_init_stack_bdle(t_stack_bdle *stack)
+{
+    stack->head = NULL;
+    stack->tail = NULL;
+    stack->size = 0;
 }
 
 

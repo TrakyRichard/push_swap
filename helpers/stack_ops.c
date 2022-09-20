@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_ops.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/18 02:52:44 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/09/20 10:00:30 by richard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void ft_unshift(t_stack_bdle **stack_bdle, int data)
 }
 
 /* Initialise the stack */
-void init_stack(t_push_swap *push_swap)
+void ft_init_stack(t_push_swap *push_swap)
 {
     push_swap->stack_a.tail = NULL;
     push_swap->stack_a.head = NULL;
@@ -109,20 +109,24 @@ int ft_shift(t_stack_bdle **stack)
     if ((*stack)->head != NULL)
         (*stack)->head->prev = NULL;
     (*stack)->size--;
-    free(tmp);
+    // free(tmp);
     return (data);
 }
 
 /* Display the informations into stack a */
-void ft_display_stack(t_stack **head)
+void ft_display_stack(t_stack *head)
 {
     t_stack *tmp;
 
-    tmp = *head;
-    while (tmp != NULL)
+    tmp = head;
+    while (tmp != NULL && tmp->next != NULL)
     {
-        ft_putnbr_fd(tmp->data, 1);
+        ft_printf("%d ", tmp->data);
         tmp = tmp->next;
+    }
+    if (tmp != NULL)
+    {
+        ft_printf("%d ", tmp->data);
     }
 }
 
@@ -140,9 +144,61 @@ void ft_rev_stack(t_stack **tail)
 }
 
 /* Merge two stacks linked list */
-void ft_merge_two_stacks(t_stack **stack_one, t_stack **stack_two)
+void ft_bind_two_stacks(t_stack_bdle *stack_one, t_stack *stack_two)
 {
-    (*stack_one)->next = *stack_two;
-    (*stack_two)->prev = (*stack_one)->prev;
+    t_stack_bdle *tmp_stack;
+    t_stack *current;
+
+    current = stack_two;
+
+    if (current == NULL)
+        return ;
+    while (current != NULL && current->next != NULL)
+    {
+        ft_push(&stack_one, current->data);
+        current = current->next;
+    }
+    ft_push(&stack_one, current->data);
 }
 
+/* function to insert all element for one list to another */
+void ft_insert_all_node(t_stack_bdle **stack, t_stack_bdle **stack_to_insert)
+{
+    t_stack *current;
+    t_stack_bdle *stack_ref;
+
+    stack_ref = *stack;
+    current = (*stack_to_insert)->head;
+    if (current == NULL)
+        return ;
+    while (current != NULL && current->next != NULL)
+    {
+        ft_push(&stack_ref, current->data);
+        current = current->next;
+    }
+    ft_push(&stack_ref, current->data);
+}
+
+/* Function that duplicate a stack bundle */
+t_stack_bdle *ft_duplicate_stack(t_stack_bdle *stack)
+{
+    t_stack_bdle *new_stack;
+    t_stack *current;
+
+    new_stack = (t_stack_bdle *)malloc(sizeof(t_stack_bdle));
+    if (new_stack == NULL)
+        ft_error("Error: malloc failed in ft_duplicate_stack");
+    new_stack->head = NULL;
+    new_stack->tail = NULL;
+    new_stack->size = 0;
+    current = stack->head;
+    if (current == NULL)
+        return (new_stack);
+    while (current != NULL && current->next != NULL)
+    {
+        ft_push(&new_stack, current->data);
+        current = current->next;
+    }
+    ft_push(&new_stack, current->data);
+    return (new_stack);
+}

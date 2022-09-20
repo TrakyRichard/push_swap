@@ -6,7 +6,7 @@
 /*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/16 15:09:52 by richard          ###   ########.fr       */
+/*   Updated: 2022/09/18 11:56:50 by richard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../ft_printf/ft_printf.h"
 
 /* function that take the element on top of st_bdl_b and put it on st_bdl_a */
-void take_top_x_to_top_y(t_stack_bdle *st_bdl_x, t_stack_bdle *st_bdl_y, char *inst)
+void ft_take_top_x_to_top_y(t_stack_bdle *st_bdl_x, t_stack_bdle *st_bdl_y, char *inst)
 {
     if (st_bdl_x->size == 0)
         return;
@@ -26,7 +26,7 @@ void take_top_x_to_top_y(t_stack_bdle *st_bdl_x, t_stack_bdle *st_bdl_y, char *i
 }
 
 /* function that take the element on top of st_bdl_a and swap it with the next_node node of st_bdl_a */
-void swap_with_next_node(t_stack_bdle *st_bdl, char *inst)
+void ft_swap_with_next_node(t_stack_bdle *st_bdl, char *inst)
 {
     int tmp;
 
@@ -46,15 +46,15 @@ void swap_with_next_node(t_stack_bdle *st_bdl, char *inst)
 }
 
 /* Function that swap two stack at the same time */
-void ss(t_stack_bdle *st_bdl_a, t_stack_bdle *st_bdl_b)
+void ft_ss(t_stack_bdle *st_bdl_a, t_stack_bdle *st_bdl_b)
 {
-    swap_with_next_node(st_bdl_a, NULL);
-    swap_with_next_node(st_bdl_b, NULL);
+    ft_swap_with_next_node(st_bdl_a, NULL);
+    ft_swap_with_next_node(st_bdl_b, NULL);
     ft_putstr_fd("ss ", 1);
 }
 
 /* function that take the element on top of the stack and put it at the bottom of stack */
-void mvt_top_to_bottom(t_stack_bdle *st_bdl, char *inst)
+void ft_mvt_top_to_bottom(t_stack_bdle *st_bdl, char *inst)
 {
     int tmp;
 
@@ -68,15 +68,15 @@ void mvt_top_to_bottom(t_stack_bdle *st_bdl, char *inst)
 }
 
 /* Function that reverse two swap at the same time */
-void rr(t_stack_bdle *st_bdl_a, t_stack_bdle *st_bdl_b)
+void ft_rr(t_stack_bdle *st_bdl_a, t_stack_bdle *st_bdl_b)
 {
-    mvt_top_to_bottom(st_bdl_a, NULL);
-    mvt_top_to_bottom(st_bdl_b, NULL);
+    ft_mvt_top_to_bottom(st_bdl_a, NULL);
+    ft_mvt_top_to_bottom(st_bdl_b, NULL);
     ft_putstr_fd("rr ", 1);
 }
 
 /* function that take the element at the bottom of the swap and put at the bottom */
-void mvt_bottom_to_top(t_stack_bdle *st_bdl_a, char *inst)
+void ft_mvt_bottom_to_top(t_stack_bdle *st_bdl_a, char *inst)
 {
     int tmp;
 
@@ -90,9 +90,9 @@ void mvt_bottom_to_top(t_stack_bdle *st_bdl_a, char *inst)
 }
 
 /* Function that make two rotation at the same time */
-void rrr(t_stack_bdle *st_bdl_a, t_stack_bdle *st_bdl_b)
+void ft_rrr(t_stack_bdle *st_bdl_a, t_stack_bdle *st_bdl_b)
 {
-    mvt_bottom_to_top(st_bdl_a, NULL);
-    mvt_bottom_to_top(st_bdl_b, NULL);
+    ft_mvt_bottom_to_top(st_bdl_a, NULL);
+    ft_mvt_bottom_to_top(st_bdl_b, NULL);
     ft_putstr_fd("rrr ", 1);
 }
