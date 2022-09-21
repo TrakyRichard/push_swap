@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   richard_sort.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:41:36 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/20 21:55:24 by richard          ###   ########.fr       */
+/*   Updated: 2022/09/21 04:24:32 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,39 +20,52 @@ void ft_init_sort_var(int *counter, t_stack **head_ref, t_stack **head, t_stack 
 	*new_chunk = NULL;
 }
 
-/* Create an algorithm inspired by tim sort algorithm */
-t_stack_bdle ft_richard_sort(t_stack_bdle **stack)
+typedef struct s_ft_richard_sort
 {
 	int i;
 	t_stack_bdle *stack_ref;
 	t_stack_bdle stack_cpy;
 	t_stack_bdle new_chunk;
+	t_stack middle;
 	t_stack_bdle sorted_stack;
 	t_stack_bdle result;
+} t_ft_richard_sort;
 
-	i = RUN;
-	stack_cpy = **stack;
-	stack_ref = &stack_cpy;
-	ft_init_stack_bdle(&new_chunk);
-	ft_init_stack_bdle(&sorted_stack);
-	ft_init_stack_bdle(&result);
-	while (i <= (*stack)->size)
+void ft_init_ft_richard_sort(t_ft_richard_sort *t_sort, t_stack_bdle ***stack)
+{
+	t_sort->i = RUN;
+	t_sort->stack_cpy = ***stack;
+	t_sort->stack_ref = &t_sort->stack_cpy;
+	ft_init_stack(&t_sort->middle);
+	ft_init_stack_bdle(&t_sort->new_chunk);
+	ft_init_stack_bdle(&t_sort->sorted_stack);
+	ft_init_stack_bdle(&t_sort->result);
+	return ;
+}
+
+/* Create an algorithm inspired by tim sort algorithm */
+t_stack_bdle ft_richard_sort(t_stack_bdle **stack)
+{
+	t_ft_richard_sort t_sort;
+
+	ft_init_ft_richard_sort(&t_sort, &stack);
+	while (t_sort.i <= (*stack)->size)
 	{
-		ft_init_stack_bdle(&new_chunk);
-		ft_split_to_get_chunk(&stack_ref, &new_chunk, RUN);
-		ft_insertion_sort(&new_chunk.head);
-		ft_bind_two_stacks(&sorted_stack, new_chunk.head);
-		if (stack_ref->size == 0)
+		ft_init_stack_bdle(&t_sort.new_chunk);
+		ft_split_to_get_chunk(&t_sort.stack_ref, &t_sort.new_chunk, RUN);
+		ft_insertion_sort(&t_sort.new_chunk.head);
+		ft_bind_two_stacks(&t_sort.sorted_stack, t_sort.new_chunk.head);
+		if (t_sort.stack_ref->size == 0)
 			break;
-		if (stack_ref->size < RUN)
-			i += stack_ref->size;
+		if (t_sort.stack_ref->size < RUN)
+			t_sort.i += t_sort.stack_ref->size;
 		else
-			i += RUN;
+			t_sort.i += RUN;
 	}
-	i = RUN;
+	t_sort.i = RUN;
 	if ((*stack)->size <= RUN)
-		return sorted_stack;
+		return t_sort.sorted_stack;
 	;
-	result = ft_iterativeMergeSort(&sorted_stack);
-	return result;
+	t_sort.result = ft_iterative_merge_sort(&t_sort.sorted_stack);
+	return t_sort.result;
 }

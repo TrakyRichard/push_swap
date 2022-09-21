@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:41:36 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/20 21:59:39 by richard          ###   ########.fr       */
+/*   Updated: 2022/09/21 05:36:14 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 void push_swap(int argc, char **argv)
 {
 	t_push_swap push_swap;
-	ft_init_stack(&push_swap);
+	ft_init_t_push_swap(&push_swap);
 	ft_read_argv(argc, argv, &push_swap);
 	if (ft_is_sorted(&push_swap.stack_a.head) == 0)
 	{

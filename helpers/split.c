@@ -3,32 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 01:44:40 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/20 21:12:57 by richard          ###   ########.fr       */
+/*   Updated: 2022/09/21 06:39:50 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
 /* Create a function that split element at 2 parts pretty much identical */
-t_stack *ft_split_in_halve(t_stack *head)
+t_middle ft_midpoint(t_stack *head)
 {
 	t_stack *slow;
 	t_stack *fast;
 	t_stack *tmp;
+	int i;
+	t_middle t_mid;
 
 	slow = head;
 	fast = head;
+	i = 0;
 	while (fast != NULL && slow != NULL)
 	{
+		i++;
 		slow = slow->next;
 		fast = fast->next->next;
 	}
-	tmp = slow->next;
-	slow->next = NULL;
-	return tmp;
+	t_mid.data = slow->data;
+	t_mid.index = i;
+	return t_mid;
 }
 
 /* Split the stack to retrieve the first N elements */

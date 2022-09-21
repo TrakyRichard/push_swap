@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/20 22:03:31 by richard          ###   ########.fr       */
+/*   Updated: 2022/09/21 07:16:12 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,39 @@
 
 void ft_sort_stack(t_push_swap *push_swap)
 {
-    t_stack_bdle *stack_a;
-    t_stack_bdle *stack_b;
     t_stack_bdle sorted_stack;
     int i;
-
-    stack_a = &push_swap->stack_a;
-    stack_b = &push_swap->stack_b;
     i = 0;
-    sorted_stack = ft_richard_sort(&stack_a);
+    sorted_stack = ft_richard_sort(&push_swap->stack_a);
+    push_swap->middle = ft_midpoint(sorted_stack.head);
+	ft_sorting_process(&push_swap);
+}
+
+void ft_sorting_process(t_push_swap **push_swap)
+{
+    t_stack_bdle *stack_a;
+    t_stack_bdle *stack_b;
+    int data;
+
+    stack_a = &(*push_swap)->stack_a;
+    stack_b = &(*push_swap)->stack_b;
+    while((*push_swap)->middle.index > 0)
+    {
+        while (stack_a->size > 1)
+        {
+            if (stack_a->head->data > (*push_swap)->middle.data)
+            {
+                data = ft_pop(&stack_a);
+                ft_take_top_x_to_top_y(&stack_a, &stack_b, "pa");
+            }
+        }
+        while (stack_a->size == 2)
+        {
+            if (stack_a->head->data > stack_b->tail->data)
+            {
+                ft_mvt_top_to_bottom(&stack_a, "ra");
+                ft_take_top_x_to_top_y(&stack_a, &stack_b, "pb");
+            }
+        }
+    }
 }

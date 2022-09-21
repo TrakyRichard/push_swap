@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_ops.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/20 10:00:30 by richard          ###   ########.fr       */
+/*   Updated: 2022/09/21 06:26:48 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void ft_unshift(t_stack_bdle **stack_bdle, int data)
 }
 
 /* Initialise the stack */
-void ft_init_stack(t_push_swap *push_swap)
+void ft_init_t_push_swap(t_push_swap *push_swap)
 {
     push_swap->stack_a.tail = NULL;
     push_swap->stack_a.head = NULL;
@@ -48,6 +48,15 @@ void ft_init_stack(t_push_swap *push_swap)
     push_swap->stack_b.size = 0;
     push_swap->instructions = NULL;
     push_swap->nbre_of_swap = 0;
+}
+
+/* Function to initialise a stack */
+ft_init_stak(t_stack *stack)
+{
+    stack->data = 0;
+    stack->chunk = 0;
+    stack->next = NULL;
+    stack->prev = NULL;
 }
 
 /* Add a new node into existing double link list */
@@ -201,4 +210,11 @@ t_stack_bdle *ft_duplicate_stack(t_stack_bdle *stack)
     }
     ft_push(&new_stack, current->data);
     return (new_stack);
+}
+
+int ft_is_stack_empty(t_stack_bdle *stack)
+{
+    if (stack->size == 0)
+        return 1;
+    return 0;
 }

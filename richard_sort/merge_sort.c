@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   merge_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:41:36 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/20 21:49:39 by richard          ###   ########.fr       */
+/*   Updated: 2022/09/21 04:09:17 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_stack_bdle ft_merge(t_stack_bdle *left, t_stack_bdle *right)
             else
             {
                 ft_insert_all_node(&result_ref, &left);
-                break;
+                return result;
             }
         }
     }
@@ -68,7 +68,7 @@ t_stack_bdle ft_merge(t_stack_bdle *left, t_stack_bdle *right)
 }
 
 /* Create a function that sort an array based on merge sort algorithm */
-t_stack_bdle *ft_mergeSort(t_stack_bdle **stack)
+t_stack_bdle *ft_merge_sort(t_stack_bdle **stack)
 {
     t_stack_bdle *stack_ref;
     t_stack_bdle *sorted_stack;
@@ -82,16 +82,15 @@ t_stack_bdle *ft_mergeSort(t_stack_bdle **stack)
     middle_ref->tail = NULL;
     middle_ref->size = 0;
     ft_split_to_get_chunk(&stack_ref, &middle, stack_ref->size / 2);
-    stack_ref = ft_mergeSort(&stack_ref);
-    middle_ref = ft_mergeSort(&middle_ref);
+    stack_ref = ft_merge_sort(&stack_ref);
+    middle_ref = ft_merge_sort(&middle_ref);
     ft_display_stack(stack_ref->head);
     ft_display_stack(middle_ref->head);
     // sorted_stack->head = ft_merge(&stack_ref->head, &middle_ref->head);
     return sorted_stack;
 }
 
-/* Create iterative merge sorte */
-t_stack_bdle ft_iterativeMergeSort(t_stack_bdle *stack)
+typedef struct s_ft_iterative_merge_sort
 {
     t_stack_bdle left;
     t_stack_bdle right;
@@ -100,26 +99,32 @@ t_stack_bdle ft_iterativeMergeSort(t_stack_bdle *stack)
     int p;
     int i;
     int size;
+} t_ft_iterative_merge_sort;
 
-    size = stack->size;
-    ft_init_stack_bdle(&result);
-    ft_init_stack_bdle(&sorted_stack);
-    p = RUN;
-    while (p <= size)
+/* Create iterative merge sorte */
+t_stack_bdle ft_iterative_merge_sort(t_stack_bdle *stack)
+{
+    t_ft_iterative_merge_sort it_sort;
+
+    it_sort.size = stack->size;
+    ft_init_stack_bdle(&it_sort.result);
+    ft_init_stack_bdle(&it_sort.sorted_stack);
+    it_sort.p = RUN;
+    while (it_sort.p <= it_sort.size)
     {
-        i = 0;
+        it_sort.i = 0;
         while (stack->size > 0)
         {
-            ft_init_stack_bdle(&left);
-            ft_init_stack_bdle(&right);
-            ft_split_to_get_chunk(&stack, &left, p);
-            ft_split_to_get_chunk(&stack, &right, p);
-            result = ft_merge(&left, &right);
-            ft_bind_two_stacks(&sorted_stack, result.head);
+            ft_init_stack_bdle(&it_sort.left);
+            ft_init_stack_bdle(&it_sort.right);
+            ft_split_to_get_chunk(&stack, &it_sort.left, it_sort.p);
+            ft_split_to_get_chunk(&stack, &it_sort.right, it_sort.p);
+            it_sort.result = ft_merge(&it_sort.left, &it_sort.right);
+            ft_bind_two_stacks(&it_sort.sorted_stack, it_sort.result.head);
         }
-        stack = ft_duplicate_stack(&sorted_stack);
-        ft_init_stack_bdle(&sorted_stack);
-        p *= 2;
+        stack = ft_duplicate_stack(&it_sort.sorted_stack);
+        ft_init_stack_bdle(&it_sort.sorted_stack);
+        it_sort.p *= 2;
     }
-    return result;
+    return it_sort.result;
 }
