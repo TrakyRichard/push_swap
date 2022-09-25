@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/21 07:01:22 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/09/25 14:50:02 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void ft_swap_with_next_node(t_stack_bdle **st_bdl, char *inst)
     st_bdl_ref = *st_bdl;
     if (st_bdl_ref->size < 2)
         return;
-    ft_shift(&st_bdl);
+    ft_shift(&st_bdl_ref);
     tmp = st_bdl_ref->head->data;
     new_node = (t_stack *)malloc(sizeof(t_stack));
     if (new_node == NULL)
@@ -91,7 +91,7 @@ void ft_rr(t_stack_bdle **st_bdl_a, t_stack_bdle **st_bdl_b)
     st_bdl_a_ref = *st_bdl_a;
     st_bdl_b_ref = *st_bdl_b;
     ft_mvt_top_to_bottom(&st_bdl_a_ref, NULL);
-    ft_mvt_top_to_bottom(st_bdl_b_ref, NULL);
+    ft_mvt_top_to_bottom(&st_bdl_b_ref, NULL);
     ft_putstr_fd("rr ", 1);
 }
 

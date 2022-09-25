@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:41:36 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/21 04:24:32 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/09/25 15:00:36 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ typedef struct s_ft_richard_sort
 	t_stack_bdle result;
 } t_ft_richard_sort;
 
-void ft_init_ft_richard_sort(t_ft_richard_sort *t_sort, t_stack_bdle ***stack)
+void ft_init_ft_richard_sort(t_ft_richard_sort *t_sort, t_stack_bdle **stack)
 {
 	t_sort->i = RUN;
-	t_sort->stack_cpy = ***stack;
+	t_sort->stack_cpy = **stack;
 	t_sort->stack_ref = &t_sort->stack_cpy;
 	ft_init_stack(&t_sort->middle);
 	ft_init_stack_bdle(&t_sort->new_chunk);
@@ -44,12 +44,12 @@ void ft_init_ft_richard_sort(t_ft_richard_sort *t_sort, t_stack_bdle ***stack)
 }
 
 /* Create an algorithm inspired by tim sort algorithm */
-t_stack_bdle ft_richard_sort(t_stack_bdle **stack)
+t_stack_bdle ft_richard_sort(t_stack_bdle *stack)
 {
 	t_ft_richard_sort t_sort;
 
 	ft_init_ft_richard_sort(&t_sort, &stack);
-	while (t_sort.i <= (*stack)->size)
+	while (t_sort.i <= stack->size)
 	{
 		ft_init_stack_bdle(&t_sort.new_chunk);
 		ft_split_to_get_chunk(&t_sort.stack_ref, &t_sort.new_chunk, RUN);
@@ -63,9 +63,8 @@ t_stack_bdle ft_richard_sort(t_stack_bdle **stack)
 			t_sort.i += RUN;
 	}
 	t_sort.i = RUN;
-	if ((*stack)->size <= RUN)
+	if (stack->size <= RUN)
 		return t_sort.sorted_stack;
-	;
 	t_sort.result = ft_iterative_merge_sort(&t_sort.sorted_stack);
 	return t_sort.result;
 }

@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/21 06:26:48 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/09/25 15:01:44 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,13 @@ void ft_init_t_push_swap(t_push_swap *push_swap)
 }
 
 /* Function to initialise a stack */
-ft_init_stak(t_stack *stack)
+void ft_init_stak(t_stack *stack)
 {
     stack->data = 0;
     stack->chunk = 0;
     stack->next = NULL;
     stack->prev = NULL;
+    return ;
 }
 
 /* Add a new node into existing double link list */
@@ -84,6 +85,7 @@ void ft_push(t_stack_bdle **stack, int data)
         (*stack)->tail = new_node;
     }
     (*stack)->size++;
+    return ;
 }
 
 /* pop last element of a stack into doubly linked list */
@@ -137,6 +139,7 @@ void ft_display_stack(t_stack *head)
     {
         ft_printf("%d ", tmp->data);
     }
+    return ;
 }
 
 /* Display the informations into stack a */
@@ -150,6 +153,7 @@ void ft_rev_stack(t_stack **tail)
         ft_putnbr_fd(tmp->data, 1);
         tmp = tmp->prev;
     }
+    return ;
 }
 
 /* Merge two stacks linked list */
@@ -168,6 +172,7 @@ void ft_bind_two_stacks(t_stack_bdle *stack_one, t_stack *stack_two)
         current = current->next;
     }
     ft_push(&stack_one, current->data);
+    return ;
 }
 
 /* function to insert all element for one list to another */
@@ -186,6 +191,7 @@ void ft_insert_all_node(t_stack_bdle **stack, t_stack_bdle **stack_to_insert)
         current = current->next;
     }
     ft_push(&stack_ref, current->data);
+    return ;
 }
 
 /* Function that duplicate a stack bundle */
@@ -216,5 +222,5 @@ int ft_is_stack_empty(t_stack_bdle *stack)
 {
     if (stack->size == 0)
         return 1;
-    return 0;
+    return (0);
 }

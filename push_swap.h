@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/21 07:02:11 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/09/25 15:02:11 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void ft_split_to_get_chunk(t_stack_bdle **stack_ref_bdle, t_stack_bdle *new_chun
 void ft_split_n_element(t_stack_bdle **stack, t_stack_bdle **new_chunk, int n);
 void ft_bind_two_stacks(t_stack_bdle *stack_one, t_stack *stack_two);
 void ft_insert_all_node(t_stack_bdle **stack, t_stack_bdle **stack_to_insert);
+
 /* moves operation */
 void ft_take_top_x_to_top_y(t_stack_bdle **st_bdl_x, t_stack_bdle **st_bdl_y, char *inst);
 void ft_swap_with_next_node(t_stack_bdle **st_bdl, char *inst);
@@ -100,7 +101,11 @@ t_stack_bdle *ft_merge_sort(t_stack_bdle **stack);
 t_stack_bdle ft_iterative_merge_sort(t_stack_bdle *stack);
 void ft_insertion_sort(t_stack **head);
 void ft_sort_stack(t_push_swap *push_swap);
-t_stack_bdle ft_richard_sort(t_stack_bdle **stack);
+t_stack_bdle ft_richard_sort(t_stack_bdle *stack);
 void ft_sorted_insertion(t_stack **head, t_stack *new_node);
+void ft_sorting_process(t_push_swap **ps);
+void handle_stack_a_case_of_2_nbrs(t_stack_bdle *stack_a, t_stack_bdle *stack_b, int chunk);
+void handle_stack_a_normal_case(t_stack_bdle *stack_a, t_stack_bdle *stack_b, int chunk, int middle);
+void get_chunk_to_sort(t_stack_bdle *stack, int chunk, t_stack_bdle *stack_b);
 
 #endif
