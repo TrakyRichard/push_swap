@@ -6,7 +6,7 @@
 /*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:41:36 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/20 21:49:39 by richard          ###   ########.fr       */
+/*   Updated: 2022/09/27 15:52:02 by richard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,50 +16,47 @@
 t_stack_bdle ft_merge(t_stack_bdle *left, t_stack_bdle *right)
 {
     t_stack_bdle result;
-    t_stack_bdle *result_ref;
-    t_stack_bdle *left_ref;
-    t_stack_bdle *right_ref;
+    int chunk;
     int data;
-    result_ref = &result;
-    left_ref = left;
-    right_ref = right;
+
     ft_init_stack_bdle(&result);
     data = 0;
-    if (left_ref->size == 0 && right_ref->size == 0)
+    if (left->size == 0 && right->size == 0)
         return result;
-    if (left_ref->size == 0)
+    if (left->size == 0)
     {
-        ft_insert_all_node(&result_ref, &right);
-        return result;
-    }
-    if (right_ref->size == 0)
-    {
-        ft_insert_all_node(&result_ref, &left);
+        ft_insert_all_node(&result, right);
         return result;
     }
-    while (left_ref->head != NULL || right_ref->head != NULL)
+    if (right->size == 0)
     {
-        if (left_ref->head->data <= right_ref->head->data)
+        ft_insert_all_node(&result, left);
+        return result;
+    }
+    while (left->head != NULL || right->head != NULL)
+    {
+        if (left->head->data <= right->head->data)
         {
-            data = left_ref->head->data;
-            ft_push(&result_ref, data);
-            if (left_ref->head->next != NULL)
-                left_ref->head = left_ref->head->next;
+            data = left->head->data;
+            chunk = left->head->chunk;
+            ft_push(&result, data, chunk);
+            if (left->head->next != NULL)
+                left->head = left->head->next;
             else
             {
-                ft_insert_all_node(&result_ref, &right);
+                ft_insert_all_node(&result, right);
                 return result;
             }
         }
         else
         {
-            data = right_ref->head->data;
-            ft_push(&result_ref, data);
-            if (right_ref->head->next != NULL)
-                right_ref->head = right_ref->head->next;
+            data = right->head->data;
+            ft_push(&result, data, chunk);
+            if (right->head->next != NULL)
+                right->head = right->head->next;
             else
             {
-                ft_insert_all_node(&result_ref, &left);
+                ft_insert_all_node(&result, left);
                 break;
             }
         }
@@ -81,7 +78,7 @@ t_stack_bdle *ft_mergeSort(t_stack_bdle **stack)
     middle_ref->head = NULL;
     middle_ref->tail = NULL;
     middle_ref->size = 0;
-    ft_split_to_get_chunk(&stack_ref, &middle, stack_ref->size / 2);
+    ft_split_to_get_chunk(stack_ref, &middle, stack_ref->size / 2);
     stack_ref = ft_mergeSort(&stack_ref);
     middle_ref = ft_mergeSort(&middle_ref);
     ft_display_stack(stack_ref->head);
@@ -112,8 +109,8 @@ t_stack_bdle ft_iterativeMergeSort(t_stack_bdle *stack)
         {
             ft_init_stack_bdle(&left);
             ft_init_stack_bdle(&right);
-            ft_split_to_get_chunk(&stack, &left, p);
-            ft_split_to_get_chunk(&stack, &right, p);
+            ft_split_to_get_chunk(stack, &left, p);
+            ft_split_to_get_chunk(stack, &right, p);
             result = ft_merge(&left, &right);
             ft_bind_two_stacks(&sorted_stack, result.head);
         }

@@ -6,7 +6,7 @@
 /*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/20 08:35:52 by richard          ###   ########.fr       */
+/*   Updated: 2022/09/28 13:43:00 by richard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void ft_read_argv(int argc, char *argv[], t_push_swap *push_swap)
     {
         if (ft_atoi(str[i]) > 2147483647 || ft_atoi(str[i]) < -2147483648)
             ft_error("The number is too big or too small \n");
-        ft_push(&stack_a, ft_atoi(str[i]));
+        ft_push(stack_a, ft_atoi(str[i]), 0);
         i++;
     }
     ft_free_dbl_point(str);
@@ -71,6 +71,21 @@ int ft_is_sorted(t_stack **head)
     return (0);
 }
 
+/* check if the stack is already sorted and return it */
+int ft_is_rev_sorted(t_stack **tail)
+{
+    t_stack *tmp;
+
+    tmp = *tail;
+    while (tmp->prev != NULL)
+    {
+        if (tmp->data > tmp->prev->data)
+            return (1);
+        tmp = tmp->prev;
+    }
+    return (0);
+}
+
 /* initialize stack bundle */
 void ft_init_stack_bdle(t_stack_bdle *stack)
 {
@@ -78,5 +93,3 @@ void ft_init_stack_bdle(t_stack_bdle *stack)
     stack->tail = NULL;
     stack->size = 0;
 }
-
-
