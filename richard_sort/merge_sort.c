@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   merge_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:41:36 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/27 15:52:02 by richard          ###   ########.fr       */
+/*   Updated: 2022/10/03 14:56:08 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,7 @@ t_stack_bdle ft_merge(t_stack_bdle *left, t_stack_bdle *right)
     data = 0;
     if (left->size == 0 && right->size == 0)
         return result;
-    if (left->size == 0)
-    {
-        ft_insert_all_node(&result, right);
-        return result;
-    }
-    if (right->size == 0)
-    {
-        ft_insert_all_node(&result, left);
-        return result;
-    }
-    while (left->head != NULL || right->head != NULL)
+    while (left->head != NULL && right->head != NULL)
     {
         if (left->head->data <= right->head->data)
         {
@@ -51,16 +41,29 @@ t_stack_bdle ft_merge(t_stack_bdle *left, t_stack_bdle *right)
         else
         {
             data = right->head->data;
+            chunk = right->head->chunk;
             ft_push(&result, data, chunk);
             if (right->head->next != NULL)
                 right->head = right->head->next;
             else
             {
                 ft_insert_all_node(&result, left);
-                break;
+                return result;
             }
         }
     }
+    if (left->size == 0 && right->size > 0)
+    {
+        ft_insert_all_node(&result, right);
+        return result;
+    }
+    if (right->size == 0 && left->size > 0)
+    {
+        ft_insert_all_node(&result, left);
+        return result;
+    }
+    int is_sorted = ft_is_sorted(&result.head);
+    printf("is_sorted: %d", is_sorted);
     return result;
 }
 
@@ -114,7 +117,7 @@ t_stack_bdle ft_iterativeMergeSort(t_stack_bdle *stack)
             result = ft_merge(&left, &right);
             ft_bind_two_stacks(&sorted_stack, result.head);
         }
-        stack = ft_duplicate_stack(&sorted_stack);
+        *stack = ft_duplicate_stack(&sorted_stack);
         ft_init_stack_bdle(&sorted_stack);
         p *= 2;
     }

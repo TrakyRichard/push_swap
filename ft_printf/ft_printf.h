@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/07/23 06:33:18 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/01 08:26:37 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct ft_printf
 }	t_ft_printf;
 
 int			ft_printf(const char *format, ...);
-static int	ft_printf_arg(const char c, t_ft_printf *t_printf);
+int			ft_printf_arg(const char c, t_ft_printf *t_printf);
 int			ft_print_char(char c);
 int			ft_print_str(char *str);
 int			ft_print_num(int n);

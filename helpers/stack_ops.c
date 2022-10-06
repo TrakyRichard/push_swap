@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_ops.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/29 06:35:56 by richard          ###   ########.fr       */
+/*   Updated: 2022/10/06 03:13:12 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,18 @@ void ft_init_push_swap_stack(t_push_swap *push_swap)
     push_swap->instructions = NULL;
     push_swap->nbre_of_swap = 0;
     push_swap->chunk_nbrs = 0;
+    push_swap->middle = 0;
+    push_swap->nbre_of_swap = 0;
+    push_swap->last_chunk_of_a = 0;
+    push_swap->last_chunk_of_b = 0;
+    push_swap->middle = malloc(sizeof(t_middle));
+    if (push_swap->middle == NULL)
+        ft_error("Error: malloc failed in ft_init_push_swap_stack");
+    push_swap->middle->value = 0;
+    push_swap->middle->size = 0;
+    push_swap->num_of_a_rotate = 0;
+    push_swap->num_of_b_rotate = 0;
+    push_swap->can_turn = 0;
     ft_init_stack_bdle(&push_swap->stack_a);
     ft_init_stack_bdle(&push_swap->stack_b);
     ft_init_stack_bdle(&push_swap->sorted_stack);
@@ -100,6 +112,11 @@ int ft_pop(t_stack_bdle *stack)
     stack->size--;
     if (stack->size == 1)
         stack->head = stack->tail;
+    if (stack->size == 0)
+    {
+        stack->head = NULL;
+        stack->tail = NULL;
+    }
     free(tmp);
     return (data);
 }
@@ -206,25 +223,22 @@ void ft_insert_all_node(t_stack_bdle *stack, t_stack_bdle *stack_to_insert)
 }
 
 /* Function that duplicate a stack bundle */
-t_stack_bdle *ft_duplicate_stack(t_stack_bdle *stack)
+t_stack_bdle ft_duplicate_stack(t_stack_bdle *stack)
 {
-    t_stack_bdle *new_stack;
+    t_stack_bdle new_stack;
     t_stack *current;
 
-    new_stack = (t_stack_bdle *)malloc(sizeof(t_stack_bdle));
-    if (new_stack == NULL)
-        ft_error("Error: malloc failed in ft_duplicate_stack");
-    new_stack->head = NULL;
-    new_stack->tail = NULL;
-    new_stack->size = 0;
+    new_stack.head = NULL;
+    new_stack.tail = NULL;
+    new_stack.size = 0;
     current = stack->head;
     if (current == NULL)
         return (new_stack);
     while (current != NULL && current->next != NULL)
     {
-        ft_push(new_stack, current->data, current->chunk);
+        ft_push(&new_stack, current->data, current->chunk);
         current = current->next;
     }
-    ft_push(new_stack, current->data, current->chunk);
+    ft_push(&new_stack, current->data, current->chunk);
     return (new_stack);
 }

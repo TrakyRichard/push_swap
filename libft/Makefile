@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/24 07:00:30 by rkanmado          #+#    #+#              #
-#    Updated: 2022/07/14 12:38:58 by rkanmado         ###   ########.fr        #
+#    Updated: 2022/10/05 03:21:13 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,15 +25,21 @@ BONUSOBJS = $(BONUSSRCS:.c=.o)
 
 
 CC = cc
-CFLAG = -Wall -Wextra -Werror
+Cflg = -g -Wall -Wextra -Werror
 
 all: $(NAME)
 
 $(NAME): $(MANDATORIESOBJS)
 	@ar rcs $(NAME) $(MANDATORIESOBJS)
 
+$(MANDATORIESOBJS): $(MANDATORIESSRCS)
+		   	$(CC) $(Cflg) -c $(MANDATORIESSRCS)
+
 bonus: $(BONUSOBJS)
 	@ar rcs $(NAME) $(BONUSOBJS)
+
+$(BONUSOBJS): $(BONUSSRCS)
+	$(CC) $(Cflg) -c $(BONUSSRCS)
 
 clean:
 	@rm -f $(MANDATORIESOBJS) $(BONUSOBJS)

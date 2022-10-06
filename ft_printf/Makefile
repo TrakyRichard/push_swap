@@ -10,14 +10,17 @@ SRCS = 	ft_printf.c \
 			src/ft_print_uns.c \
 
 CC = gcc
-FLAGS = -c -Wall -Wextra -Werror
+flgS = -g -Wall -Wextra -Werror
 
 OBJS = $(SRCS:.c=.o)
+
 
 $(NAME):	$(OBJS)
 					make -C $(LIBFT)
 					cp $(LIBFT)/libft.a $(NAME)
 					ar rcs $(NAME) $(OBJS)
+$(OBJS): %.o: %.c
+					$(CC) $(flgS) -c $< -o $@
 
 
 all: 		$(NAME)

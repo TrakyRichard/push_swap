@@ -3,36 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 01:44:40 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/27 15:47:06 by richard          ###   ########.fr       */
+/*   Updated: 2022/10/02 00:12:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
 /* Create a function that split element at 2 parts pretty much identical */
-int ft_midpoint(t_stack_bdle stack)
+t_middle *ft_midpoint(t_stack_bdle stack, t_middle *actual_middle)
 {
 	int mid;
-	int data;
 	t_stack *current;
+	t_middle *middle;
 
+	middle = actual_middle;
 	current = stack.head;
-
-	data = 0;
 	if (stack.size % 2 == 0)
 		mid = stack.size / 2;
 	else
 		mid = (stack.size / 2) + 1;
+	middle->size = mid;
 	while (mid != 0 && current != NULL && current->next != NULL)
 	{
-		data = current->data;
+		middle->value = current->data;
 		current = current->next;
 		mid--;
 	}
-		return (data);
+	return (middle);
 }
 
 /* Get midpoint of a t_stack_bundle */

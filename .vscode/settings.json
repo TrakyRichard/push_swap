@@ -16,7 +16,8 @@
 		"bitset": "c",
 		"initializer_list": "c",
 		"unordered_map": "c",
-		"utility": "c"
+		"utility": "c",
+		"stddef.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "Enabled"
 }

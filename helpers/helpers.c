@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/28 13:43:00 by richard          ###   ########.fr       */
+/*   Updated: 2022/10/05 03:13:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ int ft_is_sorted(t_stack **head)
     while (tmp->next != NULL)
     {
         if (tmp->data > tmp->next->data)
-            return (1);
+            return (0);
         tmp = tmp->next;
     }
-    return (0);
+    return (1);
 }
 
 /* check if the stack is already sorted and return it */
@@ -80,10 +80,25 @@ int ft_is_rev_sorted(t_stack **tail)
     while (tmp->prev != NULL)
     {
         if (tmp->data > tmp->prev->data)
-            return (1);
+            return (0);
         tmp = tmp->prev;
     }
-    return (0);
+    return (1);
+}
+
+/* check if the stack is already sorted in decroissant order and return 0 */
+int ft_is_rev_dec_sorted(t_stack **tail)
+{
+    t_stack *tmp;
+
+    tmp = *tail;
+    while (tmp->prev != NULL)
+    {
+        if (tmp->data < tmp->prev->data)
+            return (0);
+        tmp = tmp->prev;
+    }
+    return (1);
 }
 
 /* initialize stack bundle */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:18:22 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/07/23 06:33:25 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/01 08:26:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 * It will return the number of characters printed.
 */
 
-static int	ft_printf_arg(const char c, t_ft_printf *t_printf)
+int	ft_printf_arg(const char c, t_ft_printf *t_printf)
 {
 	if (c == 'c')
 		t_printf->chars_printed += ft_print_char(va_arg(t_printf->args, int));

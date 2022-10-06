@@ -69,13 +69,13 @@ LOGNAME = rkanmado
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # makefile (from `Makefile', line 28)
-CFLAG = -Wall -Wextra -Werror
+Cflg = -Wall -Wextra -Werror
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
 # environment
-XPC_FLAGS = 0x0
+XPC_flgS = 0x0
 # default
 MAKE = $(MAKE_COMMAND)
 # default
@@ -109,9 +109,9 @@ VSCODE_IPC_HOOK = /Users/rkanmado/Library/Application Support/Code/1.69.1-main.s
 # environment
 MallocNanoZone = 0
 # makefile
-MAKEFLAGS = Rrqp
+MAKEflgS = Rrqp
 # environment
-MFLAGS = -Rrqp
+MflgS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
