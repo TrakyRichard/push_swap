@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/05 03:13:10 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/08 13:31:26 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,19 @@ int ft_is_rev_sorted(t_stack **tail)
             return (0);
         tmp = tmp->prev;
     }
+    return (1);
+}
+
+int is_one_chunk_in_stack(t_stack *stack, int chunk)
+{
+    while (stack != NULL && stack->next != NULL)
+    {
+        if (stack->chunk != chunk)
+            return (0);
+        stack = stack->next;
+    }
+    if (stack->chunk != chunk)
+        return (0);
     return (1);
 }
 

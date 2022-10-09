@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:41:36 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/04 06:19:11 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/08 14:12:07 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_stack_bdle ft_richard_sort(t_stack_bdle stack)
 	ft_init_stack_bdle(&new_chunk);
 	ft_init_stack_bdle(&sorted_stack);
 	ft_init_stack_bdle(&result);
-	if (stack.size <= 1)
+	if (stack.size <= 1 || stack.size == 0)
 		return (stack);
 	if (stack.size <= i)
 	{

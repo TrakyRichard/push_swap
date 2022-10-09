@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/06 03:12:13 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/09 07:49:32 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void ft_swap_int(int *a1, int *a2);
 t_middle *ft_midpoint(t_stack_bdle stack, t_middle *actual_middle);
 void ft_split_to_get_chunk(t_stack_bdle *stack_ref_bdle, t_stack_bdle *new_chunk, int size);
 void ft_init_stack_bdle(t_stack_bdle *stack);
+int is_one_chunk_in_stack(t_stack *stack, int chunk);
 // void ft_init_sort_var(int *counter, t_stack **head_ref, t_stack **head, \
 // 					t_stack **sorted_stack, t_stack **new_chunk);
 void ft_split_n_element(t_stack_bdle *stack, t_stack_bdle *new_chunk, int n);
@@ -149,4 +150,18 @@ void			handle_stack_a_sort_step_one(t_push_swap *ps);
 void			handle_stack_a_sort_step_two(t_push_swap *ps);
 void			handle_stack_a_sort_step_three(t_push_swap *ps);
 // void set_new_value_of_chunk(t_push_swap *ps, int can_increment);
+
+/* Second implementation */
+void ft_sort_process_2(t_push_swap *ps);
+void ft_push_to_stack_a(t_push_swap *ps, int *flg_a, int *flg_b);
+void ft_push_to_stack_b(t_push_swap *ps, int *flg_a, int *flg_b, int chunk_track);
+void ft_reverse_stack_a(t_push_swap *ps);
+void ft_reverse_stack_b(t_push_swap *ps, int *flg_a, int *flg_b);
+void preliminary_of_stack_a(t_push_swap *ps, int *flg_a, int *flg_b);
+void preliminary_of_stack_b(t_push_swap *ps, int *flg_a, int *flg_b);
+void ft_sorting_process_2(t_push_swap *ps);
+int is_value_greater_than_middle(t_stack_bdle stack, int middle);
+void check_flag_status(t_push_swap *ps, int *flg_a, int *flg_b);
+int is_the_greatest_from_head(t_stack **stack, int number);
+void can_finished_process(t_push_swap *ps);
 #endif

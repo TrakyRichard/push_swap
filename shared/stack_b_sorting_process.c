@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/05 09:35:51 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/08 22:55:03 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,32 @@
 void handle_stack_b_case_of_less_nbrs(t_push_swap *ps, int *flg_a, int *flg_b)
 {
     if (ps->chunk_to_sort.size == 1)
+    {
+        // if (!is_the_greatest_from_head(&ps->chunk_to_sort, ps->stack_b.tail->data))
+
+        if (ft_is_rev_sorted(&ps->stack_a.tail))
+            ps->stack_b.tail->chunk = 0;
         ft_take_top_x_to_top_y(&ps->stack_b, &ps->stack_a, "pb ", &ps->nbre_of_swap);
-    if (ps->chunk_to_sort.size == 2)
+    }
+    else if (ps->chunk_to_sort.size == 2)
     {
         if (ps->stack_b.tail->data >= ps->stack_b.tail->prev->data)
         {
+            ps->stack_b.tail->chunk = 0;
             ft_take_top_x_to_top_y(&ps->stack_b, &ps->stack_a, "pb ", &ps->nbre_of_swap);
+            ps->stack_b.tail->chunk = 0;
             ft_take_top_x_to_top_y(&ps->stack_b, &ps->stack_a, "pb ", &ps->nbre_of_swap);
         }
         else
         {
             ft_swap_with_next_node(&ps->stack_b, "sb ", &ps->nbre_of_swap);
+            ps->stack_b.tail->chunk = 0;
             ft_take_top_x_to_top_y(&ps->stack_b, &ps->stack_a, "pb ", &ps->nbre_of_swap);
+            ps->stack_b.tail->chunk = 0;
             ft_take_top_x_to_top_y(&ps->stack_b, &ps->stack_a, "pb ", &ps->nbre_of_swap);
         }
     }
-    ps->middle->size -= 1;
+    ps->chunk_to_sort.size = 0;
     if (ft_is_rev_sorted(&ps->stack_a.tail) && ps->stack_b.size == 0)
     {
         *flg_a = 1;
@@ -225,11 +235,10 @@ void get_elements_reversed_of_stack_b_to_top(t_push_swap *ps, int chunk_nbrs)
     t_stack_bdle *stack_b;
 
     stack_b = &ps->stack_b;
-    while (stack_b->head->chunk == chunk_nbrs && ps->num_of_b_rotate > 0)
-    {
+    if (is_one_chunk_in_stack(stack_b->head, chunk_nbrs))
+        return ;
+    while (stack_b->head->chunk == chunk_nbrs)
         ft_mvt_bottom_to_top(stack_b, "rrb ", &ps->nbre_of_swap);
-        ps->num_of_b_rotate--;
-    }
     return;
 }
 

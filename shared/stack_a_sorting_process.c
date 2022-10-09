@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/05 09:44:10 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/08 12:39:23 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,11 +159,8 @@ void get_elements_reversed_of_stack_a_to_top(t_push_swap *ps, int chunk_nbrs)
     t_stack_bdle *stack_a;
 
     stack_a = &ps->stack_a;
-    while (stack_a->head->chunk == chunk_nbrs && ps->num_of_a_rotate > 0)
-    {
+    while (stack_a->head->chunk == chunk_nbrs)
         ft_mvt_bottom_to_top(stack_a, "rra ", &ps->nbre_of_swap);
-        ps->num_of_a_rotate--;
-    }
     return;
 }
 
@@ -218,14 +215,16 @@ int can_switch_to_stack_b(t_push_swap *ps, int *flg_a, int *flg_b)
 /* Handle the case of 2 numbers into the stack */
 void handle_stack_a_case_of_less_nbrs(t_push_swap *ps, int *flg_a, int *flg_b)
 {
-    if (ps->chunk_to_sort.size == 1)
+    if (ps->chunk_to_sort.size == 1 && ft_is_rev_sorted(&ps->stack_a.tail) \
+            && is_the_greatest_from_head(&ps->stack_b.tail, ps->stack_a.tail->data))
         ps->stack_a.tail->chunk = 0;
-    else if (ps->chunk_to_sort.size == 2)
+    else if (ps->chunk_to_sort.size == 2 && is_the_greatest_from_head(&ps->stack_b.tail, ps->stack_a.tail->data) \
+         && is_the_greatest_from_head(&ps->stack_b.tail, ps->stack_a.tail->prev->data))
     {
         if (ps->stack_a.tail->data > ps->stack_a.tail->prev->data)
         {
             ps->stack_a.tail->chunk = 0;
-            ft_swap_with_next_node(&ps->stack_a, "sb ", &ps->nbre_of_swap);
+            ft_swap_with_next_node(&ps->stack_a, "sa ", &ps->nbre_of_swap);
             ps->stack_a.tail->chunk = 0;
         }
         else

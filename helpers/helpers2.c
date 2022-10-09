@@ -41,3 +41,18 @@ int get_top_chunk_size(t_stack_bdle stack)
     }
     return (size);
 }
+
+/* Check if there is one value greater than the middle value otherwise no need to rotate*/
+int is_value_greater_than_middle(t_stack_bdle stack, int middle)
+{
+    t_stack *tmp;
+
+    tmp = stack.tail;
+    while (tmp != NULL && tmp->prev != NULL)
+    {
+        if (tmp->data > middle)
+            return (1);
+        tmp = tmp->prev;
+    }
+    return (0);
+}
