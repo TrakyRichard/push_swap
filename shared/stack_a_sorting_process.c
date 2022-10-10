@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/10 04:43:27 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/10 05:08:29 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void ft_reverse_stack_a(t_push_swap *ps)
     while (ps->stack_a.head->data >= ps->middle->value && ft_is_rev_sorted(&ps->stack_a.head) == 0 && ps->chunk_to_sort.tail->chunk == ps->stack_a.head->chunk)
     {
         ft_mvt_top_to_bottom(&ps->stack_a, "ra ", &ps->nbre_of_swap);
-        ps->num_of_a_rotate++;
         if (tail == ps->stack_a.head->data)
             break;
     }

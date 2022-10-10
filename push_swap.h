@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/10 04:43:27 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/10 05:06:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,7 @@ typedef struct s_push_swap
 	t_stack_bdle sorted_stack;
 	t_stack_bdle chunk_to_sort;
 	t_middle *middle;
-	int num_of_a_rotate;
-	int num_of_b_rotate;
-	int last_chunk_of_a;
-	int last_chunk_of_b;
-	int chunk_nbrs;
-	char *instructions;
 	int nbre_of_swap;
-	int can_turn;
 } t_push_swap;
 
 void push_swap(int argc, char **argv);
@@ -108,7 +101,6 @@ void ft_display_stack(t_node *tail);
 void ft_read_argv(int argc, char *argv[], t_push_swap *push_swap);
 int ft_digit(char *str);
 int is_one_chunk_in_stack(t_node *stack, int chunk);
-void set_new_value_of_chunk(t_push_swap *ps, int value, int can_increment);
 void ft_bind_two_stacks(t_stack_bdle *stack_one, t_node *stack_two);
 
 /* Init */

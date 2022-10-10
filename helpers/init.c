@@ -5,21 +5,13 @@
 /* Initialise the stack */
 void ft_init_push_swap_stack(t_push_swap *push_swap)
 {
-    push_swap->instructions = NULL;
-    push_swap->nbre_of_swap = 0;
-    push_swap->chunk_nbrs = 0;
     push_swap->middle = 0;
     push_swap->nbre_of_swap = 0;
-    push_swap->last_chunk_of_a = 0;
-    push_swap->last_chunk_of_b = 0;
     push_swap->middle = malloc(sizeof(t_middle));
     if (push_swap->middle == NULL)
         ft_error("Error: malloc failed in ft_init_push_swap_stack");
     push_swap->middle->value = 0;
     push_swap->middle->size = 0;
-    push_swap->num_of_a_rotate = 0;
-    push_swap->num_of_b_rotate = 0;
-    push_swap->can_turn = 0;
     ft_init_stack_bdle(&push_swap->stack_a);
     ft_init_stack_bdle(&push_swap->stack_b);
     ft_init_stack_bdle(&push_swap->sorted_stack);

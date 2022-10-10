@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/10 04:43:00 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/10 05:06:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,26 +68,6 @@ int is_one_chunk_in_stack(t_node *stack, int chunk)
     if (stack->chunk != chunk)
         return (0);
     return (1);
-}
-
-void set_new_value_of_chunk(t_push_swap *ps, int value, int can_increment)
-{
-    if (can_increment)
-    {
-        ps->stack_a.head->chunk = value;
-        ps->chunk_nbrs++;
-    }
-    else
-    {
-        if (ps->chunk_nbrs == 0)
-            ps->stack_b.head->chunk = ps->chunk_nbrs;
-        else
-        {
-            ps->stack_b.head->chunk = ps->chunk_nbrs;
-            ps->chunk_nbrs--;
-        }
-    }
-    return ;
 }
 
 /* Merge two stacks linked list */

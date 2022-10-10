@@ -35,7 +35,7 @@ void check_flag_status(t_push_swap *ps, int *flg_a, int *flg_b)
         *flg_a = 1;
         *flg_b = 1;
     }
-    if (ps->last_chunk_of_a != ps->stack_a.head->chunk || ps->middle->size >= 0 || ps->stack_a.size > 2)
+    if (ps->middle->size >= 0 || ps->stack_a.size > 2)
     {
         *flg_a = 1;
         *flg_b = 0;
