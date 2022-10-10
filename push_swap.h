@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/10 05:06:38 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/10 05:16:58 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void check_duplicate(t_stack_bdle *stack);
 /* Free */
 void ft_free_dbl_point(char **str);
 void ft_free_stack(t_node **tail, t_node **head);
+void free_push_swap(t_push_swap *ps);
 
 /* Helpers_three */
 void get_chunk_to_sort_from_head(t_stack_bdle *chunk_to_sort, int chunk, t_stack_bdle stack);

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/10 05:03:50 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/10 05:18:55 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,4 @@ void free_push_swap(t_push_swap *ps)
     free(ps->middle);
     ft_free_stack(&ps->chunk_to_sort.tail, &ps->chunk_to_sort.head);
     ft_free_stack(&ps->sorted_stack.tail, &ps->sorted_stack.head);
-    free(ps);
 }

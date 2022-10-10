@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:41:36 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/10 04:43:00 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/10 05:19:16 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ void push_swap(int argc, char **argv)
 	if (ft_is_rev_sorted(&push_swap.stack_a.head))
 		return;
 	ft_sort_process(&push_swap);
+	free_push_swap(&push_swap);
 	return;
 }
