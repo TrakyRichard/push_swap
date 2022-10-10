@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/09 17:25:22 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/10 04:43:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ void ft_error(char *str)
 
 void can_finished_process(t_push_swap *ps)
 {
-    if (ps->stack_b.size == 0 && ft_is_rev_sorted(&ps->stack_a.tail))
+    if (ps->stack_b.size == 0 && ft_is_rev_sorted(&ps->stack_a.head))
         exit(0);
     return;
 }
 
 void check_duplicate(t_stack_bdle *stack)
 {
-    t_stack *tmp;
-    t_stack *tmp2;
+    t_node *tmp;
+    t_node *tmp2;
 
-    tmp = stack->head;
+    tmp = stack->tail;
     while (tmp)
     {
         tmp2 = tmp->next;

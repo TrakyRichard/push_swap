@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/03 10:15:14 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/10 04:43:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void ft_take_top_x_to_top_y(t_stack_bdle *st_bdl_x, t_stack_bdle *st_bdl_y, char
     int data;
     int chunk;
 
-    chunk = st_bdl_x->tail->chunk;
-    data = st_bdl_x->tail->data;
+    chunk = st_bdl_x->head->chunk;
+    data = st_bdl_x->head->data;
     if (st_bdl_x->size == 0)
         return;
     ft_push(st_bdl_y, data, chunk);
@@ -40,13 +40,13 @@ void ft_swap_with_next_node(t_stack_bdle *st_bdl, char *inst, int *swap_nbrs)
     int tmp2;
     int chunk2;
 
-    t_stack *new_node;
+    t_node *new_node;
     if (st_bdl->size < 2)
         return;
-    tmp1 = st_bdl->tail->data;
-    chunk1 = st_bdl->tail->chunk;
-    tmp2 = st_bdl->tail->prev->data;
-    chunk2 = st_bdl->tail->prev->chunk;
+    tmp1 = st_bdl->head->data;
+    chunk1 = st_bdl->head->chunk;
+    tmp2 = st_bdl->head->prev->data;
+    chunk2 = st_bdl->head->prev->chunk;
     ft_pop(st_bdl);
     ft_pop(st_bdl);
     ft_push(st_bdl, tmp1, chunk1);
@@ -60,21 +60,21 @@ void ft_swap_with_next_node(t_stack_bdle *st_bdl, char *inst, int *swap_nbrs)
 /* Insert after function */
 void ft_insert_before_tail(t_stack_bdle *st_bdl, int data, int chunk)
 {
-    t_stack *new_node;
+    t_node *new_node;
 
-    new_node = (t_stack *)malloc(sizeof(t_stack));
+    new_node = (t_node *)malloc(sizeof(t_node));
     if (new_node == NULL)
         ft_error("Error: malloc failed in ft_insert_after");
     new_node->data = data;
     new_node->chunk = chunk;
-    if (st_bdl->tail->prev != NULL)
-        new_node->prev = st_bdl->tail->prev->next;
+    if (st_bdl->head->prev != NULL)
+        new_node->prev = st_bdl->head->prev->next;
     else
         new_node->prev = NULL;
-    new_node->next = st_bdl->tail;
-    if (st_bdl->tail->prev != NULL)
-        st_bdl->tail->prev->next = new_node;
-    st_bdl->tail->prev = new_node;
+    new_node->next = st_bdl->head;
+    if (st_bdl->head->prev != NULL)
+        st_bdl->head->prev->next = new_node;
+    st_bdl->head->prev = new_node;
     st_bdl->size++;
     return;
 }
@@ -97,8 +97,8 @@ void ft_mvt_top_to_bottom(t_stack_bdle *st_bdl, char *inst, int *swap_nbrs)
 
     if (st_bdl->size < 2)
         return;
-    tmp = st_bdl->tail->data;
-    chunk = st_bdl->tail->chunk;
+    tmp = st_bdl->head->data;
+    chunk = st_bdl->head->chunk;
     ft_pop(st_bdl);
     ft_unshift(st_bdl, tmp, chunk);
     if (inst != NULL)
@@ -124,8 +124,8 @@ void ft_mvt_bottom_to_top(t_stack_bdle *st_bdl_a, char *inst, int *swap_nbrs)
     int chunk;
     if (st_bdl_a->size < 2)
         return;
-    tmp = st_bdl_a->head->data;
-    chunk = st_bdl_a->head->chunk;
+    tmp = st_bdl_a->tail->data;
+    chunk = st_bdl_a->tail->chunk;
     ft_shift(st_bdl_a);
     ft_push(st_bdl_a, tmp, chunk);
     if (inst != NULL)

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/09 08:39:10 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/10 04:43:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,20 @@ void ft_free_dbl_point(char **str)
 }
 
 /* Function to freeze stack */
-void ft_free_stack(t_stack **head, t_stack **tail)
+void ft_free_stack(t_node **tail, t_node **head)
 {
-    t_stack *tmp;
+    t_node *tmp;
 
-    if (*head == NULL)
+    if (*tail == NULL)
         return;
 
-    tmp = *head;
+    tmp = *tail;
     while (tmp->next != NULL)
     {
         tmp = tmp->next;
         free(tmp->prev);
     }
     free(tmp);
-    *head = NULL;
     *tail = NULL;
+    *head = NULL;
 }

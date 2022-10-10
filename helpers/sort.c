@@ -3,11 +3,11 @@
 #include "../ft_printf/ft_printf.h"
 
 /* check if the stack is already sorted in decroissant order and return 0 */
-int ft_is_rev_dec_sorted(t_stack **tail)
+int ft_is_rev_dec_sorted(t_node **head)
 {
-    t_stack *tmp;
+    t_node *tmp;
 
-    tmp = *tail;
+    tmp = *head;
     while (tmp->prev != NULL)
     {
         if (tmp->data < tmp->prev->data)
@@ -18,11 +18,11 @@ int ft_is_rev_dec_sorted(t_stack **tail)
 }
 
 /* check if the stack is already sorted and return it */
-int ft_is_rev_sorted(t_stack **tail)
+int ft_is_rev_sorted(t_node **head)
 {
-    t_stack *tmp;
+    t_node *tmp;
 
-    tmp = *tail;
+    tmp = *head;
     while (tmp->prev != NULL)
     {
         if (tmp->data > tmp->prev->data)
@@ -33,11 +33,11 @@ int ft_is_rev_sorted(t_stack **tail)
 }
 
 /* check if the stack is already sorted and return it */
-int ft_is_sorted(t_stack **head)
+int ft_is_sorted(t_node **tail)
 {
-    t_stack *tmp;
+    t_node *tmp;
 
-    tmp = *head;
+    tmp = *tail;
     while (tmp->next != NULL)
     {
         if (tmp->data > tmp->next->data)
@@ -47,9 +47,9 @@ int ft_is_sorted(t_stack **head)
     return (1);
 }
 
-int is_the_greatest_from_head(t_stack **stack, int number)
+int is_the_greatest_from_head(t_node **stack, int number)
 {
-    t_stack *tmp;
+    t_node *tmp;
 
     tmp = (*stack);
     if (tmp == NULL)

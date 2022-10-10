@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/10 03:46:09 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/10 04:43:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,18 @@
 #include <stddef.h>
 #include <stdio.h>
 #include "./ft_printf/ft_printf.h"
-typedef struct s_stack
+typedef struct s_node
 {
 	int data;
 	int chunk;
-	struct s_stack *next;
-	struct s_stack *prev;
-} t_stack;
+	struct s_node *next;
+	struct s_node *prev;
+} t_node;
 
 typedef struct s_stack_bdle
 {
-	t_stack *tail;
-	t_stack *head;
+	t_node *head;
+	t_node *tail;
 	int size;
 } t_stack_bdle;
 
@@ -90,7 +90,7 @@ void check_duplicate(t_stack_bdle *stack);
 
 /* Free */
 void ft_free_dbl_point(char **str);
-void ft_free_stack(t_stack **head, t_stack **tail);
+void ft_free_stack(t_node **tail, t_node **head);
 
 /* Helpers_three */
 void get_chunk_to_sort_from_head(t_stack_bdle *chunk_to_sort, int chunk, t_stack_bdle stack);
@@ -102,14 +102,14 @@ int is_chunks_sorted(t_push_swap *ps, int chunk_one, int chunk_two);
 int get_top_chunk_size(t_stack_bdle stack);
 int is_value_greater_than_middle(t_stack_bdle stack, int middle);
 void ft_insert_all_node(t_stack_bdle *stack, t_stack_bdle *stack_to_insert);
-void ft_display_stack(t_stack *head);
+void ft_display_stack(t_node *tail);
 
 /* Helpers */
 void ft_read_argv(int argc, char *argv[], t_push_swap *push_swap);
 int ft_digit(char *str);
-int is_one_chunk_in_stack(t_stack *stack, int chunk);
+int is_one_chunk_in_stack(t_node *stack, int chunk);
 void set_new_value_of_chunk(t_push_swap *ps, int value, int can_increment);
-void ft_bind_two_stacks(t_stack_bdle *stack_one, t_stack *stack_two);
+void ft_bind_two_stacks(t_stack_bdle *stack_one, t_node *stack_two);
 
 /* Init */
 void ft_init_push_swap_stack(t_push_swap *push_swap);
@@ -117,10 +117,10 @@ void ft_init_stack_bdle(t_stack_bdle *stack);
 t_stack_bdle ft_duplicate_stack(t_stack_bdle *stack);
 
 /* Sort */
-int ft_is_rev_dec_sorted(t_stack **tail);
-int ft_is_rev_sorted(t_stack **tail);
-int ft_is_sorted(t_stack **head);
-int is_the_greatest_from_head(t_stack **stack, int number);
+int ft_is_rev_dec_sorted(t_node **head);
+int ft_is_rev_sorted(t_node **head);
+int ft_is_sorted(t_node **tail);
+int is_the_greatest_from_head(t_node **stack, int number);
 
 /* Split */
 t_middle *ft_midpoint(t_stack_bdle stack, t_middle *actual_middle);
@@ -177,8 +177,8 @@ void get_elements_reversed_of_stack_b_to_top(t_push_swap * ps, int chunk_nbrs);
 void is_chunk_b_already_sorted(t_push_swap *ps, int *flg_a, int *flg_b);
 
 /* richard_sort */
-void ft_sorted_insertion(t_stack **head, t_stack *new_node);
-void ft_insertion_sort(t_stack **head);
+void ft_sorted_insertion(t_node **tail, t_node *new_node);
+void ft_insertion_sort(t_node **tail);
 t_stack_bdle ft_merge(t_stack_bdle *left, t_stack_bdle *right);
 t_stack_bdle ft_iterativeMergeSort(t_stack_bdle *stack);
 t_stack_bdle ft_richard_sort(t_stack_bdle stack);

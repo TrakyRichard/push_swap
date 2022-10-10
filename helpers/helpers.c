@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/09 13:18:17 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/10 04:43:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int ft_digit(char *str)
     return (0);
 }
 
-int is_one_chunk_in_stack(t_stack *stack, int chunk)
+int is_one_chunk_in_stack(t_node *stack, int chunk)
 {
     while (stack != NULL && stack->next != NULL)
     {
@@ -74,16 +74,16 @@ void set_new_value_of_chunk(t_push_swap *ps, int value, int can_increment)
 {
     if (can_increment)
     {
-        ps->stack_a.tail->chunk = value;
+        ps->stack_a.head->chunk = value;
         ps->chunk_nbrs++;
     }
     else
     {
         if (ps->chunk_nbrs == 0)
-            ps->stack_b.tail->chunk = ps->chunk_nbrs;
+            ps->stack_b.head->chunk = ps->chunk_nbrs;
         else
         {
-            ps->stack_b.tail->chunk = ps->chunk_nbrs;
+            ps->stack_b.head->chunk = ps->chunk_nbrs;
             ps->chunk_nbrs--;
         }
     }
@@ -91,10 +91,10 @@ void set_new_value_of_chunk(t_push_swap *ps, int value, int can_increment)
 }
 
 /* Merge two stacks linked list */
-void ft_bind_two_stacks(t_stack_bdle *stack_one, t_stack *stack_two)
+void ft_bind_two_stacks(t_stack_bdle *stack_one, t_node *stack_two)
 {
     t_stack_bdle *tmp_stack;
-    t_stack *current;
+    t_node *current;
 
     current = stack_two;
 

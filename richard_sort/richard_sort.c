@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:41:36 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/09 15:00:07 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/10 04:43:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,15 @@ t_stack_bdle ft_richard_sort(t_stack_bdle stack)
 	{
 		ft_init_stack_bdle(&r_sort.new_chunk);
 		ft_split_to_get_chunk(&stack, &r_sort.new_chunk, RUN);
-		ft_insertion_sort(&r_sort.new_chunk.head);
+		ft_insertion_sort(&r_sort.new_chunk.tail);
 		return r_sort.new_chunk;
 	}
 	while (stack.size > 0)
 	{
 		ft_init_stack_bdle(&r_sort.new_chunk);
 		ft_split_to_get_chunk(&stack, &r_sort.new_chunk, RUN);
-		ft_insertion_sort(&r_sort.new_chunk.head);
-		ft_bind_two_stacks(&r_sort.sorted_stack, r_sort.new_chunk.head);
+		ft_insertion_sort(&r_sort.new_chunk.tail);
+		ft_bind_two_stacks(&r_sort.sorted_stack, r_sort.new_chunk.tail);
 		set_new_value_of_counter(&stack, &r_sort.i);
 	}
 	if (r_sort.i <= RUN)

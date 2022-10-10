@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:41:36 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/09 15:00:35 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/10 04:43:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ t_stack_bdle ft_merge(t_stack_bdle *left, t_stack_bdle *right)
         ft_insert_all_node(&result, left);
         return result;
     }
-    while (left->head != NULL && right->head != NULL)
+    while (left->tail != NULL && right->tail != NULL)
     {
-        if (left->head->data <= right->head->data)
+        if (left->tail->data <= right->tail->data)
         {
-            data = left->head->data;
-            chunk = left->head->chunk;
+            data = left->tail->data;
+            chunk = left->tail->chunk;
             ft_push(&result, data, chunk);
-            if (left->head->next != NULL)
-                left->head = left->head->next;
+            if (left->tail->next != NULL)
+                left->tail = left->tail->next;
             else
             {
                 ft_insert_all_node(&result, right);
@@ -50,11 +50,11 @@ t_stack_bdle ft_merge(t_stack_bdle *left, t_stack_bdle *right)
         }
         else
         {
-            data = right->head->data;
-            chunk = right->head->chunk;
+            data = right->tail->data;
+            chunk = right->tail->chunk;
             ft_push(&result, data, chunk);
-            if (right->head->next != NULL)
-                right->head = right->head->next;
+            if (right->tail->next != NULL)
+                right->tail = right->tail->next;
             else
             {
                 ft_insert_all_node(&result, left);
@@ -89,7 +89,7 @@ t_stack_bdle ft_iterativeMergeSort(t_stack_bdle *stack)
             ft_split_to_get_chunk(stack, &m_sort.left, p);
             ft_split_to_get_chunk(stack, &m_sort.right, p);
             m_sort.result = ft_merge(&m_sort.left, &m_sort.right);
-            ft_bind_two_stacks(&m_sort.sorted_stack, m_sort.result.head);
+            ft_bind_two_stacks(&m_sort.sorted_stack, m_sort.result.tail);
         }
         *stack = ft_duplicate_stack(&m_sort.sorted_stack);
         ft_init_stack_bdle(&m_sort.sorted_stack);

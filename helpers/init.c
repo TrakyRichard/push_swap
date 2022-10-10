@@ -29,8 +29,8 @@ void ft_init_push_swap_stack(t_push_swap *push_swap)
 /* initialize stack bundle */
 void ft_init_stack_bdle(t_stack_bdle *stack)
 {
-    stack->head = NULL;
     stack->tail = NULL;
+    stack->head = NULL;
     stack->size = 0;
 }
 
@@ -38,12 +38,12 @@ void ft_init_stack_bdle(t_stack_bdle *stack)
 t_stack_bdle ft_duplicate_stack(t_stack_bdle *stack)
 {
     t_stack_bdle new_stack;
-    t_stack *current;
+    t_node *current;
 
-    new_stack.head = NULL;
     new_stack.tail = NULL;
+    new_stack.head = NULL;
     new_stack.size = 0;
-    current = stack->head;
+    current = stack->tail;
     if (current == NULL)
         return (new_stack);
     while (current != NULL && current->next != NULL)
@@ -56,11 +56,11 @@ t_stack_bdle ft_duplicate_stack(t_stack_bdle *stack)
 }
 
 /* Display the informations into stack a */
-void ft_rev_stack(t_stack *tail)
+void ft_rev_stack(t_node *head)
 {
-    t_stack *tmp;
+    t_node *tmp;
 
-    tmp = tail;
+    tmp = head;
     while (tmp != NULL)
     {
         ft_putnbr_fd(tmp->data, 1);

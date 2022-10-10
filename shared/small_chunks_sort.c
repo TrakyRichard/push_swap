@@ -6,14 +6,14 @@ void ft_sort_three(t_push_swap *ps)
     t_stack_bdle *stack;
 
     stack = &ps->stack_a;
-    if (stack->head->data > stack->head->next->data && stack->head->data > stack->tail->data)
+    if (stack->tail->data > stack->tail->next->data && stack->tail->data > stack->head->data)
     {
-        if (stack->head->next->data < stack->tail->data)
+        if (stack->tail->next->data < stack->head->data)
             ft_swap_with_next_node(&ps->stack_a, "sa ", &ps->nbre_of_swap);
     }
-    else if (stack->head->next->data > stack->head->data && stack->head->next->data > stack->tail->data)
+    else if (stack->tail->next->data > stack->tail->data && stack->tail->next->data > stack->head->data)
     {
-        if (stack->head->data < stack->tail->data)
+        if (stack->tail->data < stack->head->data)
             ft_mvt_bottom_to_top(&ps->stack_a, "rra ", &ps->nbre_of_swap);
         else
         {
@@ -21,9 +21,9 @@ void ft_sort_three(t_push_swap *ps)
             ft_swap_with_next_node(&ps->stack_a, "sa ", &ps->nbre_of_swap);
         }
     }
-    else if (stack->tail->data > stack->head->next->data && stack->tail->data > stack->head->data)
+    else if (stack->head->data > stack->tail->next->data && stack->head->data > stack->tail->data)
     {
-        if (stack->head->next->data < stack->head->data)
+        if (stack->tail->next->data < stack->tail->data)
             ft_mvt_top_to_bottom(&ps->stack_a, "ra ", &ps->nbre_of_swap);
         else
         {
@@ -48,7 +48,7 @@ void ft_sort_five(t_push_swap *ps)
     ps->middle = ft_midpoint(ps->sorted_stack, ps->middle);
     while (i < 2)
     {
-        if (ps->stack_a.tail->data < ps->middle->value)
+        if (ps->stack_a.head->data < ps->middle->value)
         {
             ft_take_top_x_to_top_y(&ps->stack_a, &ps->stack_b, "pb ", &ps->nbre_of_swap);
             i++;
@@ -75,7 +75,7 @@ void ft_sort_four(t_push_swap *ps)
     ps->middle = ft_midpoint(ps->sorted_stack, ps->middle);
     while (i < 1)
     {
-        if (ps->stack_a.tail->data < ps->middle->value)
+        if (ps->stack_a.head->data < ps->middle->value)
         {
             ft_take_top_x_to_top_y(&ps->stack_a, &ps->stack_b, "pb ", &ps->nbre_of_swap);
             i++;
