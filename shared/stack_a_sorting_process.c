@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/09 15:04:26 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/10 04:20:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void ft_stack_a_sorting_process(t_push_swap *ps, int *flg_a, int *flg_b)
     while (*flg_a && *flg_b == 0 && ft_is_rev_sorted(&ps->stack_a.tail) == 0)
     {
         preliminary_of_stack_a(ps, flg_a, flg_b);
+        is_chunk_a_already_sorted(ps, flg_a, flg_b);
         check_flag_status(ps, flg_a, flg_b);
         chunk_track++;
         while (ps->middle->size > 1 && *flg_a)
@@ -31,6 +32,33 @@ void ft_stack_a_sorting_process(t_push_swap *ps, int *flg_a, int *flg_b)
         if (ps->stack_a.head->chunk != 0)
             get_elements_reversed_of_stack_a_to_top(ps, ps->stack_b.head->chunk);
         check_flag_status(ps, flg_a, flg_b);
+    }
+    return;
+}
+
+void ft_push_to_stack_b(t_push_swap *ps, int *flg_a, int *flg_b, int chunk_track)
+{
+    while (ps->stack_a.tail->data < ps->middle->value && ps->stack_a.tail->chunk == ps->chunk_to_sort.head->chunk && *flg_a)
+    {
+        ps->stack_a.tail->chunk = chunk_track;
+        ft_take_top_x_to_top_y(&ps->stack_a, &ps->stack_b, "pa ", &ps->nbre_of_swap);
+        ps->middle->size--;
+    }
+}
+
+void is_chunk_a_already_sorted(t_push_swap *ps, int *flg_a, int *flg_b)
+{
+    if (ps->chunk_to_sort.size > 0)
+    {
+        while (ft_is_rev_sorted(&ps->chunk_to_sort.tail))
+        {
+            while (ps->chunk_to_sort.size > 0)
+            {
+                ps->stack_a.tail->chunk = 0;
+                ft_pop(&ps->chunk_to_sort);
+            }
+            preliminary_of_stack_a(ps, flg_a, flg_b);
+        }
     }
     return;
 }

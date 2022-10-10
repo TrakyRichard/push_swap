@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/10 02:49:49 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/10 03:46:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,13 +165,16 @@ int ft_can_continue(t_push_swap *ps);
 void ft_stack_a_sorting_process(t_push_swap *ps, int *flg_a, int *flg_b);
 void ft_reverse_stack_a(t_push_swap *ps);
 void get_elements_reversed_of_stack_a_to_top(t_push_swap *ps, int chunk_nbrs);
+void is_chunk_a_already_sorted(t_push_swap *ps, int *flg_a, int *flg_b);
+void ft_push_to_stack_a(t_push_swap *ps, int *flg_a, int *flg_b);
+;
 
 /* stack_b_sorting_process */
 void ft_push_to_stack_b(t_push_swap *ps, int *flg_a, int *flg_b, int chunk_track);
 void ft_reverse_stack_b(t_push_swap *ps, int *flg_a, int *flg_b);
-void ft_push_to_stack_a(t_push_swap *ps, int *flg_a, int *flg_b);
 void ft_stack_b_sorting_process(t_push_swap *ps, int *flg_a, int *flg_b);
 void get_elements_reversed_of_stack_b_to_top(t_push_swap * ps, int chunk_nbrs);
+void is_chunk_b_already_sorted(t_push_swap *ps, int *flg_a, int *flg_b);
 
 /* richard_sort */
 void ft_sorted_insertion(t_stack **head, t_stack *new_node);
