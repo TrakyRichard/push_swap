@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/08 13:31:26 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/09 13:18:17 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void ft_read_argv(int argc, char *argv[], t_push_swap *push_swap)
         i++;
     }
     ft_free_dbl_point(str);
+    return ;
 }
 
 /* Appropriate function to check wheiter a string ascii representation is a digit or no */
@@ -56,36 +57,6 @@ int ft_digit(char *str)
     return (0);
 }
 
-/* check if the stack is already sorted and return it */
-int ft_is_sorted(t_stack **head)
-{
-    t_stack *tmp;
-
-    tmp = *head;
-    while (tmp->next != NULL)
-    {
-        if (tmp->data > tmp->next->data)
-            return (0);
-        tmp = tmp->next;
-    }
-    return (1);
-}
-
-/* check if the stack is already sorted and return it */
-int ft_is_rev_sorted(t_stack **tail)
-{
-    t_stack *tmp;
-
-    tmp = *tail;
-    while (tmp->prev != NULL)
-    {
-        if (tmp->data > tmp->prev->data)
-            return (0);
-        tmp = tmp->prev;
-    }
-    return (1);
-}
-
 int is_one_chunk_in_stack(t_stack *stack, int chunk)
 {
     while (stack != NULL && stack->next != NULL)
@@ -99,25 +70,41 @@ int is_one_chunk_in_stack(t_stack *stack, int chunk)
     return (1);
 }
 
-/* check if the stack is already sorted in decroissant order and return 0 */
-int ft_is_rev_dec_sorted(t_stack **tail)
+void set_new_value_of_chunk(t_push_swap *ps, int value, int can_increment)
 {
-    t_stack *tmp;
-
-    tmp = *tail;
-    while (tmp->prev != NULL)
+    if (can_increment)
     {
-        if (tmp->data < tmp->prev->data)
-            return (0);
-        tmp = tmp->prev;
+        ps->stack_a.tail->chunk = value;
+        ps->chunk_nbrs++;
     }
-    return (1);
+    else
+    {
+        if (ps->chunk_nbrs == 0)
+            ps->stack_b.tail->chunk = ps->chunk_nbrs;
+        else
+        {
+            ps->stack_b.tail->chunk = ps->chunk_nbrs;
+            ps->chunk_nbrs--;
+        }
+    }
+    return ;
 }
 
-/* initialize stack bundle */
-void ft_init_stack_bdle(t_stack_bdle *stack)
+/* Merge two stacks linked list */
+void ft_bind_two_stacks(t_stack_bdle *stack_one, t_stack *stack_two)
 {
-    stack->head = NULL;
-    stack->tail = NULL;
-    stack->size = 0;
+    t_stack_bdle *tmp_stack;
+    t_stack *current;
+
+    current = stack_two;
+
+    if (current == NULL)
+        return;
+    while (current != NULL && current->next != NULL)
+    {
+        ft_push(stack_one, current->data, current->chunk);
+        current = current->next;
+    }
+    ft_push(stack_one, current->data, current->chunk);
+    return ;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/16 15:09:52 by richard          ###   ########.fr       */
+/*   Updated: 2022/10/09 08:39:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void ft_free_dbl_point(char **str)
     free(str);
 }
 
-/* Function to swap two elements into a stack */
+/* Function to freeze stack */
 void ft_free_stack(t_stack **head, t_stack **tail)
 {
     t_stack *tmp;

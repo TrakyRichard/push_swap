@@ -56,3 +56,36 @@ int is_value_greater_than_middle(t_stack_bdle stack, int middle)
     }
     return (0);
 }
+
+/* function to insert all element for one list to another */
+void ft_insert_all_node(t_stack_bdle *stack, t_stack_bdle *stack_to_insert)
+{
+    t_stack *current;
+
+    current = stack_to_insert->head;
+    if (current == NULL)
+        return;
+    while (current != NULL && current->next != NULL)
+    {
+        ft_push(stack, current->data, current->chunk);
+        current = current->next;
+    }
+    ft_push(stack, current->data, current->chunk);
+}
+
+/* Display the informations into stack a */
+void ft_display_stack(t_stack *head)
+{
+    t_stack *tmp;
+
+    tmp = head;
+    while (tmp != NULL && tmp->next != NULL)
+    {
+        ft_printf("%d ", tmp->data);
+        tmp = tmp->next;
+    }
+    if (tmp != NULL)
+    {
+        ft_printf("%d ", tmp->data);
+    }
+}

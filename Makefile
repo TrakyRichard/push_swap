@@ -4,10 +4,12 @@ NAME = push_swap.a
 LIBFT = ./libft
 FT_PRINTF = ./ft_printf
 RM = rm -f
-SRCS = push_swap.c ./shared/moves.c ./shared/operations.c ./helpers/helpers.c ./helpers/error.c ./helpers/free.c ./helpers/stack_ops.c ./helpers/swap.c \
-richard_sort/richard_sort.c richard_sort/insertion_sort.c \
-richard_sort/merge_sort.c helpers/split.c ./shared/operations2.c \
-./shared/stack_a_sorting_process.c ./shared/stack_b_sorting_process.c ./helpers/helpers2.c
+SRCS = push_swap.c ./shared/moves.c ./shared/operations.c ./helpers/helpers.c \
+./helpers/helpers_two.c ./helpers/helpers_three.c ./helpers/init.c ./helpers/sort.c \
+./helpers/stack_a_helper.c ./helpers/stack_b_helper.c ./helpers/exception.c \
+./helpers/free.c ./helpers/stack_ops.c ./richard_sort/richard_sort.c \
+./richard_sort/insertion_sort.c ./richard_sort/merge_sort.c ./helpers/split.c \
+./shared/stack_a_sorting_process.c ./shared/stack_b_sorting_process.c ./shared/small_chunks_sort.c \
 
 OBJS = $(SRCS:.c=.o)
 

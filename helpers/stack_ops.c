@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/06 03:13:12 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/09 14:05:35 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,7 @@ void ft_unshift(t_stack_bdle *stack_bdle, int data, int chunk)
         stack_bdle->head = new_node;
     }
     stack_bdle->size++;
-}
-
-/* Initialise the stack */
-void ft_init_push_swap_stack(t_push_swap *push_swap)
-{
-    push_swap->instructions = NULL;
-    push_swap->nbre_of_swap = 0;
-    push_swap->chunk_nbrs = 0;
-    push_swap->middle = 0;
-    push_swap->nbre_of_swap = 0;
-    push_swap->last_chunk_of_a = 0;
-    push_swap->last_chunk_of_b = 0;
-    push_swap->middle = malloc(sizeof(t_middle));
-    if (push_swap->middle == NULL)
-        ft_error("Error: malloc failed in ft_init_push_swap_stack");
-    push_swap->middle->value = 0;
-    push_swap->middle->size = 0;
-    push_swap->num_of_a_rotate = 0;
-    push_swap->num_of_b_rotate = 0;
-    push_swap->can_turn = 0;
-    ft_init_stack_bdle(&push_swap->stack_a);
-    ft_init_stack_bdle(&push_swap->stack_b);
-    ft_init_stack_bdle(&push_swap->sorted_stack);
-    ft_init_stack_bdle(&push_swap->chunk_to_sort);
+    return;
 }
 
 /* Add a new node into existing double link list */
@@ -88,6 +65,7 @@ void ft_push(t_stack_bdle *stack, int data, int chunk)
         stack->tail = new_node;
     }
     stack->size++;
+    return;
 }
 
 /* pop last element of a stack into doubly linked list */
@@ -121,25 +99,6 @@ int ft_pop(t_stack_bdle *stack)
     return (data);
 }
 
-void set_new_value_of_chunk(t_push_swap *ps, int value, int can_increment)
-{
-    if (can_increment)
-    {
-        ps->stack_a.tail->chunk = value;
-        ps->chunk_nbrs++;
-    }
-    else
-    {
-        if (ps->chunk_nbrs == 0)
-            ps->stack_b.tail->chunk = ps->chunk_nbrs;
-        else
-        {
-            ps->stack_b.tail->chunk = ps->chunk_nbrs;
-            ps->chunk_nbrs--;
-        }
-    }
-}
-
 /* shift removes the first item into the stack  */
 int ft_shift(t_stack_bdle *stack)
 {
@@ -156,89 +115,4 @@ int ft_shift(t_stack_bdle *stack)
     stack->size--;
     free(tmp);
     return (data);
-}
-
-/* Display the informations into stack a */
-void ft_display_stack(t_stack *head)
-{
-    t_stack *tmp;
-
-    tmp = head;
-    while (tmp != NULL && tmp->next != NULL)
-    {
-        ft_printf("%d ", tmp->data);
-        tmp = tmp->next;
-    }
-    if (tmp != NULL)
-    {
-        ft_printf("%d ", tmp->data);
-    }
-}
-
-/* Display the informations into stack a */
-void ft_rev_stack(t_stack *tail)
-{
-    t_stack *tmp;
-
-    tmp = tail;
-    while (tmp != NULL)
-    {
-        ft_putnbr_fd(tmp->data, 1);
-        tmp = tmp->prev;
-    }
-}
-
-/* Merge two stacks linked list */
-void ft_bind_two_stacks(t_stack_bdle *stack_one, t_stack *stack_two)
-{
-    t_stack_bdle *tmp_stack;
-    t_stack *current;
-
-    current = stack_two;
-
-    if (current == NULL)
-        return;
-    while (current != NULL && current->next != NULL)
-    {
-        ft_push(stack_one, current->data, current->chunk);
-        current = current->next;
-    }
-    ft_push(stack_one, current->data, current->chunk);
-}
-
-/* function to insert all element for one list to another */
-void ft_insert_all_node(t_stack_bdle *stack, t_stack_bdle *stack_to_insert)
-{
-    t_stack *current;
-
-    current = stack_to_insert->head;
-    if (current == NULL)
-        return;
-    while (current != NULL && current->next != NULL)
-    {
-        ft_push(stack, current->data, current->chunk);
-        current = current->next;
-    }
-    ft_push(stack, current->data, current->chunk);
-}
-
-/* Function that duplicate a stack bundle */
-t_stack_bdle ft_duplicate_stack(t_stack_bdle *stack)
-{
-    t_stack_bdle new_stack;
-    t_stack *current;
-
-    new_stack.head = NULL;
-    new_stack.tail = NULL;
-    new_stack.size = 0;
-    current = stack->head;
-    if (current == NULL)
-        return (new_stack);
-    while (current != NULL && current->next != NULL)
-    {
-        ft_push(&new_stack, current->data, current->chunk);
-        current = current->next;
-    }
-    ft_push(&new_stack, current->data, current->chunk);
-    return (new_stack);
 }

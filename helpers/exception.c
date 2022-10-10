@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   exception.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/09/15 03:56:12 by richard          ###   ########.fr       */
+/*   Updated: 2022/10/09 17:25:22 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,32 @@ void ft_error(char *str)
         ft_putstr_fd("Error \n", 1);
     else
         ft_putstr_fd(str, 1);
-    exit(0);
+    exit(1);
+}
+
+void can_finished_process(t_push_swap *ps)
+{
+    if (ps->stack_b.size == 0 && ft_is_rev_sorted(&ps->stack_a.tail))
+        exit(0);
+    return;
+}
+
+void check_duplicate(t_stack_bdle *stack)
+{
+    t_stack *tmp;
+    t_stack *tmp2;
+
+    tmp = stack->head;
+    while (tmp)
+    {
+        tmp2 = tmp->next;
+        while (tmp2)
+        {
+            if (tmp->data == tmp2->data)
+                ft_error("There is a duplicate into the stack \n");
+            tmp2 = tmp2->next;
+        }
+        tmp = tmp->next;
+    }
+    return;
 }
