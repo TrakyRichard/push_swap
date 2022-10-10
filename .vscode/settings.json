@@ -17,7 +17,8 @@
 		"initializer_list": "c",
 		"unordered_map": "c",
 		"utility": "c",
-		"stddef.h": "c"
+		"stddef.h": "c",
+		"sstream": "c"
 	},
 	"C_Cpp.errorSquiggles": "Enabled"
 }
