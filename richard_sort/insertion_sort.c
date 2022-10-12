@@ -6,25 +6,25 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:41:36 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/10 07:47:40 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/12 03:39:04 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
 /* Create a function that will insert element in a sorting index */
-void	ft_sorted_insertion(t_node **tail, t_node *new_node)
+void	ft_sorted_insertion(t_node **head, t_node *new_node)
 {
 	t_node	*current;
 
-	if (*tail == NULL || (*tail)->data >= new_node->data)
+	if (*head == NULL || (*head)->data >= new_node->data)
 	{
-		new_node->next = *tail;
-		*tail = new_node;
+		new_node->next = *head;
+		*head = new_node;
 	}
 	else
 	{
-		current = *tail;
+		current = *head;
 		while (current->next != NULL && current->next->data < new_node->data)
 			current = current->next;
 		new_node->next = current->next;
@@ -34,20 +34,20 @@ void	ft_sorted_insertion(t_node **tail, t_node *new_node)
 }
 
 /* Create an insertion sort function  */
-void	ft_insertion_sort(t_node **tail)
+void	ft_insertion_sort(t_node **head)
 {
 	t_node	*sorted_ref;
 	t_node	*current;
 	t_node	*next;
 
 	sorted_ref = NULL;
-	current = *tail;
+	current = *head;
 	while (current != NULL)
 	{
 		next = current->next;
 		ft_sorted_insertion(&sorted_ref, current);
 		current = next;
 	}
-	*tail = sorted_ref;
+	*head = sorted_ref;
 	return ;
 }

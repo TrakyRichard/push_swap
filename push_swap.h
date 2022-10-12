@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/12 02:21:22 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/12 03:39:04 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct s_node
 
 typedef struct s_stack_bdle
 {
-	t_node	*head;
 	t_node	*tail;
+	t_node	*head;
 	int		size;
 }	t_stack_bdle;
 
@@ -76,13 +76,13 @@ void				check_duplicate(t_stack_bdle *stack);
 
 /* Free */
 void				ft_free_dbl_point(char **str);
-void				ft_free_stack(t_node **tail, t_node **head);
+void				ft_free_stack(t_node **head, t_node **tail);
 void				free_push_swap(t_push_swap *ps);
 
 /* Helpers_three */
-void				get_chunk_to_sort_from_head(t_stack_bdle *chunk_to_sort, \
-					int chunk, t_stack_bdle stack);
 void				get_chunk_to_sort_from_tail(t_stack_bdle *chunk_to_sort, \
+					int chunk, t_stack_bdle stack);
+void				get_chunk_to_sort_from_head(t_stack_bdle *chunk_to_sort, \
 					int chunk, t_stack_bdle stack);
 void				set_chunk_nbrs(t_stack_bdle *stack, int chunk_nbrs);
 
@@ -94,7 +94,7 @@ int					is_value_greater_than_middle(t_stack_bdle stack, \
 					int middle);
 void				ft_insert_all_node(t_stack_bdle *stack, \
 					t_stack_bdle *stack_to_insert);
-void				ft_display_stack(t_node *tail);
+void				ft_display_stack(t_node *head);
 
 /* Helpers */
 void				ft_parsing_two_args(int argc, char *argv[], \
@@ -112,10 +112,10 @@ void				ft_init_stack_bdle(t_stack_bdle *stack);
 t_stack_bdle		ft_duplicate_stack(t_stack_bdle *stack);
 
 /* Sort */
-int					ft_is_rev_dec_sorted(t_node **head);
-int					ft_is_rev_sorted(t_node **head);
-int					ft_is_sorted(t_node **tail);
-int					is_the_grtst_from_head(t_node **stack, int number);
+int					ft_is_rev_dec_sorted(t_node **tail);
+int					ft_is_rev_sorted(t_node **tail);
+int					ft_is_sorted(t_node **head);
+int					is_the_grtst_from_tail(t_node **stack, int number);
 
 /* Split */
 t_middle			*ft_midpoint(t_stack_bdle stack, t_middle \
@@ -153,7 +153,7 @@ void				ft_top_x_to_top_y(t_stack_bdle *st_bdl_x, \
 					t_stack_bdle *st_bdl_y, char *inst, int *swap_nbrs);
 void				ft_swap_with_next_node(t_stack_bdle *st_bdl, \
 					char *inst, int *swap_nbrs);
-void				ft_insert_before_tail(t_stack_bdle *st_bdl, \
+void				ft_insert_before_head(t_stack_bdle *st_bdl, \
 					int data, int chunk);
 void				ft_ss(t_stack_bdle *st_bdl_a, t_stack_bdle *st_bdl_b, \
 					int *swap_nbrs);
@@ -196,8 +196,8 @@ void				is_chunk_b_already_sorted(t_push_swap *ps, int *flg_a, \
 					int *flg_b);
 
 /* richard_sort */
-void				ft_sorted_insertion(t_node **tail, t_node *new_node);
-void				ft_insertion_sort(t_node **tail);
+void				ft_sorted_insertion(t_node **head, t_node *new_node);
+void				ft_insertion_sort(t_node **head);
 t_stack_bdle		ft_merge(t_stack_bdle *left, t_stack_bdle *right);
 t_stack_bdle		ft_iterative_merge_sort(t_stack_bdle *stack);
 void				init_it_m_sort_var(t_m_sort *m_sort, t_stack_bdle *st, \
@@ -211,6 +211,6 @@ void				ft_sort_three(t_push_swap *ps);
 void				ft_sort_five(t_push_swap *ps);
 void				ft_sort_four(t_push_swap *ps);
 void				hndle_mid_value_is_greatst(t_push_swap *ps);
-void				handle_head_is_greatst(t_push_swap *ps);
+void				handle_tail_is_greatst(t_push_swap *ps);
 
 #endif

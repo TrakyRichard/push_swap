@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:41:36 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/10 09:08:02 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/12 03:39:04 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,15 @@ t_stack_bdle	ft_merge(t_stack_bdle *left, t_stack_bdle *right)
 		ft_insert_all_node(&result, left);
 		return (result);
 	}
-	while (left->tail != NULL && right->tail != NULL)
+	while (left->head != NULL && right->head != NULL)
 	{
-		if (left->tail->data <= right->tail->data)
+		if (left->head->data <= right->head->data)
 		{
-			data = left->tail->data;
-			chunk = left->tail->chunk;
+			data = left->head->data;
+			chunk = left->head->chunk;
 			ft_push(&result, data, chunk);
-			if (left->tail->next != NULL)
-				left->tail = left->tail->next;
+			if (left->head->next != NULL)
+				left->head = left->head->next;
 			else
 			{
 				ft_insert_all_node(&result, right);
@@ -51,11 +51,11 @@ t_stack_bdle	ft_merge(t_stack_bdle *left, t_stack_bdle *right)
 		}
 		else
 		{
-			data = right->tail->data;
-			chunk = right->tail->chunk;
+			data = right->head->data;
+			chunk = right->head->chunk;
 			ft_push(&result, data, chunk);
-			if (right->tail->next != NULL)
-				right->tail = right->tail->next;
+			if (right->head->next != NULL)
+				right->head = right->head->next;
 			else
 			{
 				ft_insert_all_node(&result, left);
@@ -95,7 +95,7 @@ t_stack_bdle	ft_iterative_merge_sort(t_stack_bdle *stack)
 			ft_split_to_get_chunk(stack, &m_sort.left, p);
 			ft_split_to_get_chunk(stack, &m_sort.right, p);
 			m_sort.result = ft_merge(&m_sort.left, &m_sort.right);
-			ft_bind_two_stacks(&m_sort.sorted_stack, m_sort.result.tail);
+			ft_bind_two_stacks(&m_sort.sorted_stack, m_sort.result.head);
 		}
 		*stack = ft_duplicate_stack(&m_sort.sorted_stack);
 		ft_init_stack_bdle(&m_sort.sorted_stack);

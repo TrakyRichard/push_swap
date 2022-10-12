@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/10 09:11:03 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/12 03:39:04 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ void	ft_unshift(t_stack_bdle *stack_bdle, int data, int chunk)
 		ft_error(NULL);
 	new_node->data = data;
 	new_node->chunk = chunk;
-	new_node->next = stack_bdle->tail;
+	new_node->next = stack_bdle->head;
 	new_node->prev = NULL;
-	if (stack_bdle->head == NULL)
+	if (stack_bdle->tail == NULL)
 	{
-		stack_bdle->head = new_node;
 		stack_bdle->tail = new_node;
+		stack_bdle->head = new_node;
 	}
 	else
 	{
-		stack_bdle->tail->prev = new_node;
-		stack_bdle->tail = new_node;
+		stack_bdle->head->prev = new_node;
+		stack_bdle->head = new_node;
 	}
 	stack_bdle->size++;
 	return ;
@@ -50,19 +50,19 @@ void	ft_push(t_stack_bdle *stack, int data, int chunk)
 		ft_error(NULL);
 	new_node->data = data;
 	new_node->chunk = chunk;
-	if (stack->head == NULL)
+	if (stack->tail == NULL)
 	{
 		new_node->next = NULL;
 		new_node->prev = NULL;
-		stack->head = new_node;
 		stack->tail = new_node;
+		stack->head = new_node;
 	}
 	else
 	{
 		new_node->next = NULL;
-		new_node->prev = stack->head;
-		stack->head->next = new_node;
-		stack->head = new_node;
+		new_node->prev = stack->tail;
+		stack->tail->next = new_node;
+		stack->tail = new_node;
 	}
 	stack->size++;
 	return ;
@@ -74,23 +74,23 @@ int	ft_pop(t_stack_bdle *stack)
 	int		data;
 	t_node	*tmp;
 
-	if (stack->head == NULL)
+	if (stack->tail == NULL)
 		ft_error(NULL);
-	data = stack->head->data;
-	tmp = stack->head;
-	if (stack->head->prev != NULL)
-		stack->head = stack->head->prev;
-	if (stack->head == NULL)
-		stack->tail = NULL;
-	else if (stack->head->next != NULL)
-			stack->head->next = NULL;
+	data = stack->tail->data;
+	tmp = stack->tail;
+	if (stack->tail->prev != NULL)
+		stack->tail = stack->tail->prev;
+	if (stack->tail == NULL)
+		stack->head = NULL;
+	else if (stack->tail->next != NULL)
+			stack->tail->next = NULL;
 	stack->size--;
 	if (stack->size == 1)
-		stack->tail = stack->head;
+		stack->head = stack->tail;
 	if (stack->size == 0)
 	{
-		stack->tail = NULL;
 		stack->head = NULL;
+		stack->tail = NULL;
 	}
 	free(tmp);
 	return (data);
@@ -102,13 +102,13 @@ int	ft_shift(t_stack_bdle *stack)
 	int		data;
 	t_node	*tmp;
 
-	if (stack->tail == NULL)
+	if (stack->head == NULL)
 		ft_error(NULL);
-	data = stack->tail->data;
-	tmp = stack->tail;
-	stack->tail = stack->tail->next;
-	if (stack->tail != NULL)
-		stack->tail->prev = NULL;
+	data = stack->head->data;
+	tmp = stack->head;
+	stack->head = stack->head->next;
+	if (stack->head != NULL)
+		stack->head->prev = NULL;
 	stack->size--;
 	free(tmp);
 	return (data);

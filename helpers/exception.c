@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/12 02:53:41 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/12 03:39:04 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	ft_error(char *str)
 
 void	can_finished_process(t_push_swap *ps)
 {
-	ft_display_stack(ps->stack_a.tail);
-	if (ps->stack_b.size == 0 && ft_is_rev_sorted(&ps->stack_a.head))
+	ft_display_stack(ps->stack_a.head);
+	if (ps->stack_b.size == 0 && ft_is_rev_sorted(&ps->stack_a.tail))
 		exit(EXIT_SUCCESS);
 	return ;
 }
@@ -37,7 +37,7 @@ void	check_duplicate(t_stack_bdle *stack)
 	t_node	*tmp;
 	t_node	*tmp2;
 
-	tmp = stack->tail;
+	tmp = stack->head;
 	while (tmp)
 	{
 		tmp2 = tmp->next;

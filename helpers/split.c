@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 01:44:40 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/10 07:17:22 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/12 03:39:04 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_middle	*ft_midpoint(t_stack_bdle stack, t_middle *actual_middle)
 	t_middle	*middle;
 
 	middle = actual_middle;
-	current = stack.tail;
+	current = stack.head;
 	if (stack.size % 2 == 0)
 		mid = stack.size / 2;
 	else
@@ -47,7 +47,7 @@ void	ft_split_n_element(t_stack_bdle *stack, t_stack_bdle *new_chunk, int n)
 	i = 0;
 	while (i < n && current->size > 0)
 	{
-		chunk_nbrs = current->tail->chunk;
+		chunk_nbrs = current->head->chunk;
 		data = ft_shift(current);
 		ft_push(new_chunk, data, chunk_nbrs);
 		i++;

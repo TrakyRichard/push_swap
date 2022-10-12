@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:41:36 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/12 02:59:19 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/12 03:37:51 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	push_swap(int argc, char **argv)
 	else if (argc > 2)
 		ft_parsing_multiple_args(argc, argv, &push_swap);
 	check_duplicate(&push_swap.stack_a);
-	if (ft_is_rev_sorted(&push_swap.stack_a.head))
+	if (ft_is_rev_sorted(&push_swap.stack_a.tail))
 		return ;
 	ft_sort_process(&push_swap);
 	free_push_swap(&push_swap);

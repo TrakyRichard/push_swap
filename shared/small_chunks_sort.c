@@ -15,7 +15,7 @@
 
 void	hndle_mid_value_is_greatst(t_push_swap *ps)
 {
-	if (ps->stack_a.tail->data < ps->stack_a.head->data)
+	if (ps->stack_a.head->data < ps->stack_a.tail->data)
 		ft_mvt_bottom_to_top(&ps->stack_a, "rra\n", &ps->nbre_of_swap);
 	else
 	{
@@ -25,9 +25,9 @@ void	hndle_mid_value_is_greatst(t_push_swap *ps)
 	return ;
 }
 
-void	handle_head_is_greatst(t_push_swap *ps)
+void	handle_tail_is_greatst(t_push_swap *ps)
 {
-	if (ps->stack_a.tail->next->data < ps->stack_a.tail->data)
+	if (ps->stack_a.head->next->data < ps->stack_a.head->data)
 		ft_mvt_top_to_bottom(&ps->stack_a, "ra\n", &ps->nbre_of_swap);
 	else
 	{
@@ -39,18 +39,18 @@ void	handle_head_is_greatst(t_push_swap *ps)
 
 void	ft_sort_three(t_push_swap *ps)
 {
-	if (ps->stack_a.tail->data > ps->stack_a.tail->next->data && \
-		ps->stack_a.tail->data > ps->stack_a.head->data)
+	if (ps->stack_a.head->data > ps->stack_a.head->next->data && \
+		ps->stack_a.head->data > ps->stack_a.tail->data)
 	{
-		if (ps->stack_a.tail->next->data < ps->stack_a.head->data)
+		if (ps->stack_a.head->next->data < ps->stack_a.tail->data)
 			ft_swap_with_next_node(&ps->stack_a, "sa\n", &ps->nbre_of_swap);
 	}
-	else if (ps->stack_a.tail->next->data > ps->stack_a.tail->data && \
-			ps->stack_a.tail->next->data > ps->stack_a.head->data)
+	else if (ps->stack_a.head->next->data > ps->stack_a.head->data && \
+			ps->stack_a.head->next->data > ps->stack_a.tail->data)
 		hndle_mid_value_is_greatst(ps);
-	else if (ps->stack_a.head->data > ps->stack_a.tail->next->data && \
-			ps->stack_a.head->data > ps->stack_a.tail->data)
-		handle_head_is_greatst(ps);
+	else if (ps->stack_a.tail->data > ps->stack_a.head->next->data && \
+			ps->stack_a.tail->data > ps->stack_a.head->data)
+		handle_tail_is_greatst(ps);
 	can_finished_process(ps);
 	return ;
 }
@@ -62,12 +62,12 @@ void	ft_sort_five(t_push_swap *ps)
 	i = 0;
 	ft_init_stack_bdle(&ps->chunk_to_sort);
 	ft_init_stack_bdle(&ps->sorted_stack);
-	get_chunk_to_sort_from_tail(&ps->chunk_to_sort, 0, ps->stack_a);
+	get_chunk_to_sort_from_head(&ps->chunk_to_sort, 0, ps->stack_a);
 	ps->sorted_stack = ft_r_sort(ps->chunk_to_sort);
 	ps->middle = ft_midpoint(ps->sorted_stack, ps->middle);
 	while (i < 2)
 	{
-		if (ps->stack_a.head->data < ps->middle->value)
+		if (ps->stack_a.tail->data < ps->middle->value)
 		{
 			ft_top_x_to_top_y(&ps->stack_a, &ps->stack_b, \
 			"pb\n", &ps->nbre_of_swap);
@@ -89,12 +89,12 @@ void	ft_sort_four(t_push_swap *ps)
 	i = 0;
 	ft_init_stack_bdle(&ps->chunk_to_sort);
 	ft_init_stack_bdle(&ps->sorted_stack);
-	get_chunk_to_sort_from_tail(&ps->chunk_to_sort, 0, ps->stack_a);
+	get_chunk_to_sort_from_head(&ps->chunk_to_sort, 0, ps->stack_a);
 	ps->sorted_stack = ft_r_sort(ps->chunk_to_sort);
 	ps->middle = ft_midpoint(ps->sorted_stack, ps->middle);
 	while (i < 1)
 	{
-		if (ps->stack_a.head->data < ps->middle->value)
+		if (ps->stack_a.tail->data < ps->middle->value)
 		{
 			ft_top_x_to_top_y(&ps->stack_a, &ps->stack_b, \
 			"pb\n", &ps->nbre_of_swap);
