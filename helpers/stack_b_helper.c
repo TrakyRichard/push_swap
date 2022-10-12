@@ -46,7 +46,7 @@ void	push_sorted_chunk_in_stack_a(t_push_swap *ps, int *flg_a, int *flg_b)
 		else
 		{
 			ps->stack_b.head->chunk = ps->stack_b.tail->chunk;
-			ft_mvt_top_to_bottom(&ps->stack_b, "rb", &ps->nbre_of_swap);
+			ft_mvt_top_to_bottom(&ps->stack_b, "rb\n", &ps->nbre_of_swap);
 		}
 	}
 	else
@@ -83,7 +83,7 @@ void	preliminary_of_stack_b(t_push_swap *ps, int *flg_a, int *flg_b)
 			else
 			{
 				ps->stack_b.head->chunk = ps->stack_b.tail->chunk;
-				ft_mvt_top_to_bottom(&ps->stack_b, "rb", &ps->nbre_of_swap);
+				ft_mvt_top_to_bottom(&ps->stack_b, "rb\n", &ps->nbre_of_swap);
 				break ;
 			}
 		}
@@ -110,20 +110,20 @@ void	handle_stack_b_two_nbrs_case(t_push_swap *ps)
 	{
 		ps->stack_b.head->chunk = 0;
 		ft_top_x_to_top_y(&ps->stack_b, &ps->stack_a, \
-		"pb", &ps->nbre_of_swap);
+		"pb\n", &ps->nbre_of_swap);
 		ps->stack_b.head->chunk = 0;
 		ft_top_x_to_top_y(&ps->stack_b, &ps->stack_a, \
-		"pb", &ps->nbre_of_swap);
+		"pb\n", &ps->nbre_of_swap);
 	}
 	else
 	{
-		ft_swap_with_next_node(&ps->stack_b, "sb", &ps->nbre_of_swap);
+		ft_swap_with_next_node(&ps->stack_b, "sb\n", &ps->nbre_of_swap);
 		ps->stack_b.head->chunk = 0;
 		ft_top_x_to_top_y(&ps->stack_b, &ps->stack_a, \
-		"pb", &ps->nbre_of_swap);
+		"pb\n", &ps->nbre_of_swap);
 		ps->stack_b.head->chunk = 0;
 		ft_top_x_to_top_y(&ps->stack_b, &ps->stack_a, \
-		"pb", &ps->nbre_of_swap);
+		"pb\n", &ps->nbre_of_swap);
 	}
 	return ;
 }
@@ -136,7 +136,7 @@ void	hndle_stk_b_case_of_less_nbrs(t_push_swap *ps)
 		if (ft_is_rev_sorted(&ps->stack_a.head))
 			ps->stack_b.head->chunk = 0;
 		ft_top_x_to_top_y(&ps->stack_b, &ps->stack_a, \
-		"pb", &ps->nbre_of_swap);
+		"pb\n", &ps->nbre_of_swap);
 	}
 	else if (ps->chunk_to_sort.size == 2)
 		handle_stack_b_two_nbrs_case(ps);

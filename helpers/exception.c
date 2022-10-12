@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/10 09:19:53 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/12 02:53:41 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,18 @@
 void	ft_error(char *str)
 {
 	if (str == NULL)
-		ft_putstr_fd("Error\n", 1);
+		ft_putstr_fd("Error\n", STDERR_FILENO);
 	else
-		ft_putstr_fd(str, 1);
+		ft_putstr_fd(str, STDERR_FILENO);
 	exit(EXIT_FAILURE);
 	return ;
 }
 
 void	can_finished_process(t_push_swap *ps)
 {
+	ft_display_stack(ps->stack_a.tail);
 	if (ps->stack_b.size == 0 && ft_is_rev_sorted(&ps->stack_a.head))
-		exit(0);
+		exit(EXIT_SUCCESS);
 	return ;
 }
 

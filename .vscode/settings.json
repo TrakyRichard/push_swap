@@ -18,7 +18,12 @@
 		"unordered_map": "c",
 		"utility": "c",
 		"stddef.h": "c",
-		"sstream": "c"
+		"sstream": "c",
+		"__tree": "c",
+		"deque": "c",
+		"random": "c",
+		"set": "c",
+		"unordered_set": "c"
 	},
 	"C_Cpp.errorSquiggles": "Enabled"
 }

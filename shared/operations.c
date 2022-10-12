@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 08:14:27 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/10 08:14:28 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/12 02:36:30 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 void	ft_sort_process(t_push_swap *ps)
 {
+	ft_display_stack(ps->stack_a.tail);
+
 	if (ps->stack_a.size == 3)
 		ft_sort_three(ps);
 	else if (ps->stack_a.size == 4)

@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/10 09:54:00 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/12 02:01:53 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_push_to_stack_b(t_push_swap *ps, int *flg_a, int *flg_b, \
 			ps->stack_a.head->chunk == ps->chunk_to_sort.tail->chunk)
 	{
 		ps->stack_a.head->chunk = chunk_track;
-		ft_top_x_to_top_y(&ps->stack_a, &ps->stack_b, "pa", &ps->nbre_of_swap);
+		ft_top_x_to_top_y(&ps->stack_a, &ps->stack_b, "pa\n", &ps->nbre_of_swap);
 		ps->middle->size--;
 	}
 	return ;
@@ -74,7 +74,7 @@ void	get_elements_reversed_of_stack_a_to_top(t_push_swap *ps, int chunk_nbrs)
 
 	stack_a = &ps->stack_a;
 	while (stack_a->tail->chunk == chunk_nbrs)
-		ft_mvt_bottom_to_top(stack_a, "rra", &ps->nbre_of_swap);
+		ft_mvt_bottom_to_top(stack_a, "rra\n", &ps->nbre_of_swap);
 	return ;
 }
 
@@ -87,7 +87,7 @@ void	ft_reverse_stack_a(t_push_swap *ps)
 		ft_is_rev_sorted(&ps->stack_a.head) == 0 && \
 		ps->chunk_to_sort.tail->chunk == ps->stack_a.head->chunk)
 	{
-		ft_mvt_top_to_bottom(&ps->stack_a, "ra", &ps->nbre_of_swap);
+		ft_mvt_top_to_bottom(&ps->stack_a, "ra\n", &ps->nbre_of_swap);
 		if (tail == ps->stack_a.head->data)
 			break ;
 	}

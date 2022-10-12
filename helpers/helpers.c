@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/10 09:13:43 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/12 02:34:14 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../ft_printf/ft_printf.h"
 
 /* Read the number passed into the argv into the pushswap function */
-void	ft_read_argv(int argc, char *argv[], t_push_swap *push_swap)
+void	ft_parsing_two_args(int argc, char *argv[], t_push_swap *push_swap)
 {
 	int				i;
 	char			**str;
@@ -37,6 +37,25 @@ void	ft_read_argv(int argc, char *argv[], t_push_swap *push_swap)
 		i++;
 	}
 	ft_free_dbl_point(str);
+	return ;
+}
+
+void ft_parsing_multiple_args(int argc, char **argv, t_push_swap *push_swap)
+{
+	int counter;
+	t_stack_bdle	*stack_a;
+
+	stack_a = &push_swap->stack_a;
+	counter = 1;
+	while (argv[counter] != NULL)
+	{
+		if (ft_digit(argv[1]) == 1)
+			ft_error("Somes arguments are not digits \n");
+		if (ft_atoi(argv[counter]) > 2147483647 || ft_atoi(argv[counter]) < -2147483648)
+			ft_error(NULL);
+		ft_push(stack_a, ft_atoi(argv[counter]), 0);
+		counter++;
+	}
 	return ;
 }
 

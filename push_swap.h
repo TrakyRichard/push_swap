@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/10 09:02:33 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/12 02:21:22 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,10 @@ void				ft_insert_all_node(t_stack_bdle *stack, \
 void				ft_display_stack(t_node *tail);
 
 /* Helpers */
-void				ft_read_argv(int argc, char *argv[], \
+void				ft_parsing_two_args(int argc, char *argv[], \
 					t_push_swap *push_swap);
+void				ft_parsing_multiple_args(int argc, char *argv[], \
+t_push_swap *push_swap);
 int					ft_digit(char *str);
 int					is_one_chunk_in_stack(t_node *stack, int chunk);
 void				ft_bind_two_stacks(t_stack_bdle *stack_one, \

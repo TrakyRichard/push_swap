@@ -27,7 +27,7 @@ void	handle_stack_a_case_of_less_nbrs(t_push_swap *ps)
 		if (ps->stack_a.head->data > ps->stack_a.head->prev->data)
 		{
 			ps->stack_a.head->chunk = 0;
-			ft_swap_with_next_node(&ps->stack_a, "sa", &ps->nbre_of_swap);
+			ft_swap_with_next_node(&ps->stack_a, "sa\n", &ps->nbre_of_swap);
 			ps->stack_a.head->chunk = 0;
 		}
 		else

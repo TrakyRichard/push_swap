@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/10 09:39:54 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/12 02:00:34 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_reverse_stack_b(t_push_swap *ps, int *flg_a, int *flg_b)
 		ps->chunk_to_sort.tail->chunk == ps->stack_b.head->chunk \
 		&& ps->middle->size >= -1)
 	{
-		ft_mvt_top_to_bottom(&ps->stack_b, "rb", &ps->nbre_of_swap);
+		ft_mvt_top_to_bottom(&ps->stack_b, "rb\n", &ps->nbre_of_swap);
 		ps->middle->size--;
 		if (tail == ps->stack_b.head->data)
 		{
@@ -42,7 +42,7 @@ void	ft_push_to_stack_a(t_push_swap *ps, int *flg_a, int *flg_b)
 	while (ps->stack_b.head->data >= ps->middle->value \
 		&& ps->stack_b.head->chunk == ps->chunk_to_sort.tail->chunk)
 	{
-		ft_top_x_to_top_y(&ps->stack_b, &ps->stack_a, "pb", \
+		ft_top_x_to_top_y(&ps->stack_b, &ps->stack_a, "pb\n", \
 			&ps->nbre_of_swap);
 		if (ps->stack_b.size == 0)
 			break ;
@@ -84,7 +84,7 @@ void	is_chunk_b_already_sorted(t_push_swap *ps, int *flg_a, int *flg_b)
 		{
 			can_finished_process(ps);
 			ps->stack_b.head->chunk = 0;
-			ft_top_x_to_top_y(&ps->stack_b, &ps->stack_a, "pb", \
+			ft_top_x_to_top_y(&ps->stack_b, &ps->stack_a, "pb\n", \
 				&ps->nbre_of_swap);
 			ft_pop(&ps->chunk_to_sort);
 		}
@@ -102,6 +102,6 @@ void	get_elts_reversed_of_stack_b_to_top(t_push_swap *ps, int chunk_nbrs)
 	if (is_one_chunk_in_stack(stack_b->tail, chunk_nbrs))
 		return ;
 	while (stack_b->tail->chunk == chunk_nbrs)
-		ft_mvt_bottom_to_top(stack_b, "rrb", &ps->nbre_of_swap);
+		ft_mvt_bottom_to_top(stack_b, "rrb\n", &ps->nbre_of_swap);
 	return ;
 }
