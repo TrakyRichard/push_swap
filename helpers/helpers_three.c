@@ -25,7 +25,7 @@ void	get_chunk_to_sort_from_head(t_stack_bdle *chunk_to_sort, \
 	data = 0;
 	while (tmp.size > 0 && tmp.head->chunk == chunk)
 	{
-		data = ft_pop(&tmp);
+		data = ft_shift(&tmp);
 		ft_push(chunk_to_sort, data, chunk);
 	}
 	return ;
@@ -45,7 +45,7 @@ void	get_chunk_to_sort_from_tail(t_stack_bdle *chunk_to_sort, \
 	while (tmp.size > 0 && tmp.tail->chunk == chunk)
 	{
 		data = ft_pop(&tmp);
-		ft_unshift(chunk_to_sort, data, chunk);
+		ft_push(chunk_to_sort, data, chunk);
 	}
 	return ;
 }

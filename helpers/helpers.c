@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/12 02:34:14 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/12 06:10:41 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void ft_parsing_multiple_args(int argc, char **argv, t_push_swap *push_swap)
 
 	stack_a = &push_swap->stack_a;
 	counter = 1;
-	while (argv[counter] != NULL)
+	while (counter < argc)
 	{
 		if (ft_digit(argv[1]) == 1)
 			ft_error("Somes arguments are not digits \n");

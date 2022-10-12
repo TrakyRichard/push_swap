@@ -25,12 +25,12 @@ int	is_chunks_sorted(t_push_swap *ps, int chunk_one, int chunk_two)
 		|| tmp->chunk == chunk_two) && tmp->prev != NULL)
 		tmp = tmp->prev;
 	{
-		ft_unshift(&stack, tmp->data, tmp->chunk);
+		ft_push(&stack, tmp->data, tmp->chunk);
 		tmp = tmp->prev;
 	}
 	if (tmp != NULL && (tmp->chunk == chunk_one || tmp->chunk == chunk_two))
-		ft_unshift(&stack, tmp->data, tmp->chunk);
-	if (ft_is_rev_dec_sorted(&stack.tail))
+		ft_push(&stack, tmp->data, tmp->chunk);
+	if (ft_is_sorted(&stack.head))
 		return (1);
 	else
 		return (0);

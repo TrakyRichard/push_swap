@@ -59,18 +59,33 @@ int	ft_is_sorted(t_node **head)
 	return (1);
 }
 
-int	is_the_grtst_from_tail(t_node **stack, int number)
+/* check if the stack is already sorted and return it */
+int	ft_is_dec_sorted(t_node **head)
+{
+	t_node	*tmp;
+
+	tmp = *head;
+	while (tmp->next != NULL)
+	{
+		if (tmp->data < tmp->next->data)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
+int	is_the_grtst_from_head(t_node **stack, int number)
 {
 	t_node	*tmp;
 
 	tmp = (*stack);
 	if (tmp == NULL)
 		return (1);
-	while (tmp->prev != NULL && tmp != NULL && tmp->data != number)
+	while (tmp->next != NULL && tmp != NULL && tmp->data != number)
 	{
 		if (tmp->data > number)
 			return (0);
-		tmp = tmp->prev;
+		tmp = tmp->next;
 	}
 	if (tmp != NULL && tmp->data > number)
 		return (0);

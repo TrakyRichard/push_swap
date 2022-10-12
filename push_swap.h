@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/12 03:39:04 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/12 05:50:57 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,8 @@ t_stack_bdle		ft_duplicate_stack(t_stack_bdle *stack);
 int					ft_is_rev_dec_sorted(t_node **tail);
 int					ft_is_rev_sorted(t_node **tail);
 int					ft_is_sorted(t_node **head);
-int					is_the_grtst_from_tail(t_node **stack, int number);
+int					is_the_grtst_from_head(t_node **stack, int number);
+int					ft_is_dec_sorted(t_node **head);
 
 /* Split */
 t_middle			*ft_midpoint(t_stack_bdle stack, t_middle \
@@ -211,6 +212,6 @@ void				ft_sort_three(t_push_swap *ps);
 void				ft_sort_five(t_push_swap *ps);
 void				ft_sort_four(t_push_swap *ps);
 void				hndle_mid_value_is_greatst(t_push_swap *ps);
-void				handle_tail_is_greatst(t_push_swap *ps);
+void				handle_head_is_greatst(t_push_swap *ps);
 
 #endif
