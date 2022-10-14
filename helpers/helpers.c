@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/12 02:34:14 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/12 12:03:08 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_parsing_two_args(int argc, char *argv[], t_push_swap *push_swap)
 	{
 		if (ft_atoi(str[i]) > 2147483647 || ft_atoi(str[i]) < -2147483648)
 			ft_error(NULL);
-		ft_push(stack_a, ft_atoi(str[i]), 0);
+		ft_unshift(stack_a, ft_atoi(str[i]), 0);
 		i++;
 	}
 	ft_free_dbl_point(str);
@@ -53,7 +53,7 @@ void ft_parsing_multiple_args(int argc, char **argv, t_push_swap *push_swap)
 			ft_error("Somes arguments are not digits \n");
 		if (ft_atoi(argv[counter]) > 2147483647 || ft_atoi(argv[counter]) < -2147483648)
 			ft_error(NULL);
-		ft_push(stack_a, ft_atoi(argv[counter]), 0);
+		ft_unshift(stack_a, ft_atoi(argv[counter]), 0);
 		counter++;
 	}
 	return ;

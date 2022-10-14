@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exception.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/12 02:53:41 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/12 12:54:57 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ void	ft_error(char *str)
 
 void	can_finished_process(t_push_swap *ps)
 {
-	ft_display_stack(ps->stack_a.tail);
 	if (ps->stack_b.size == 0 && ft_is_rev_sorted(&ps->stack_a.head))
+	{
+		ft_display_stack(ps->stack_a.tail);
 		exit(EXIT_SUCCESS);
+	}
 	return ;
 }
 
