@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/10 09:11:03 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/14 23:35:55 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	ft_unshift(t_stack_bdle *stack_bdle, int data, int chunk)
 void	ft_push(t_stack_bdle *stack, int data, int chunk)
 {
 	t_node	*new_node;
-	t_node	*tmp;
 
 	new_node = (t_node *)malloc(sizeof(t_node));
 	if (new_node == NULL)

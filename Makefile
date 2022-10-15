@@ -1,20 +1,27 @@
 # compile ft_printf, libft, push_swap together
 
 NAME = push_swap.a
+BONUS_NAME = checker
 LIBFT = ./libft
 FT_PRINTF = ./ft_printf
+GNL = ./bonus/get_next_line
 RM = rm -f
 SRCS = push_swap.c ./shared/moves.c ./shared/operations.c ./helpers/helpers.c \
 ./helpers/helpers_two.c ./helpers/helpers_three.c ./helpers/init.c ./helpers/sort.c \
-./helpers/stack_a_helper.c ./helpers/stack_b_helper.c ./helpers/exception.c \
+./helpers/stack_a_helper.c ./helpers/stack_b_helper.c ./helpers/stack_b_helper_two.c \
+./helpers/exception.c \
 ./helpers/free.c ./helpers/stack_ops.c ./richard_sort/richard_sort.c \
 ./richard_sort/insertion_sort.c ./richard_sort/merge_sort.c ./helpers/split.c \
 ./shared/stack_a_sorting_process.c ./shared/stack_b_sorting_process.c ./shared/small_chunks_sort.c \
 
-OBJS = $(SRCS:.c=.o)
+BONUSRCS = ./bonus/checker.c ./bonus/move.c ./bonus/utils.c ./bonus/get_next_line/get_next_line_utils.c \
+			./bonus/get_next_line/get_next_line.c
 
-CC = gcc
-flgS = -g
+OBJS = $(SRCS:.c=.o)
+BONUSOBJS = $(BONUSRCS:.c=.o)
+
+CC = cc
+flgS = -g -Wall -Wextra -Werror
 
 
 $(NAME) : $(OBJS)
@@ -28,16 +35,22 @@ $(NAME) : $(OBJS)
 $(OBJS) : %.o : %.c
 		$(CC) $(flgS) -c $< -o $@
 
+$(BONUSOBJS): %.o : %.c
+		$(CC) $(flgS) -c $< -o $@
+
 all : $(NAME)
 
+bonus : $(BONUSOBJS) $(NAME)
+		$(CC) $(flgS) $(BONUSOBJS) ./push_swap.a -o bonus/$(BONUS_NAME)
+
 clean :
-		@$(RM) $(OBJS)
+		@$(RM) $(OBJS) $(BONUSOBJS)
 
 fclean : clean
 		@make fclean -C $(LIBFT)
 		@make fclean -C $(FT_PRINTF)
-		@$(RM) $(NAME)
+		@$(RM) $(NAME) $(BONUSOBJS) ./bonus/checker ./push_swap
 
-re : fclean $(NAME)
+re : fclean all
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re bonus

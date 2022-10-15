@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exception.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/12 12:54:57 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/15 07:22:42 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 /* Function that just write error followed by a new line */
 void	ft_error(char *str)
 {
+	ft_putstr_fd("\x1b[1;31m", STDOUT_FILENO);
 	if (str == NULL)
 		ft_putstr_fd("Error\n", STDERR_FILENO);
 	else
 		ft_putstr_fd(str, STDERR_FILENO);
+	ft_putstr_fd("\x1B[0m\n", STDOUT_FILENO);
 	exit(EXIT_FAILURE);
 	return ;
 }
@@ -27,10 +29,7 @@ void	ft_error(char *str)
 void	can_finished_process(t_push_swap *ps)
 {
 	if (ps->stack_b.size == 0 && ft_is_rev_sorted(&ps->stack_a.head))
-	{
-		ft_display_stack(ps->stack_a.tail);
 		exit(EXIT_SUCCESS);
-	}
 	return ;
 }
 

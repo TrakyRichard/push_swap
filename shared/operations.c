@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 08:14:27 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/12 02:36:30 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/15 07:08:13 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 void	ft_sort_process(t_push_swap *ps)
 {
-	ft_display_stack(ps->stack_a.tail);
-
 	if (ps->stack_a.size == 3)
 		ft_sort_three(ps);
 	else if (ps->stack_a.size == 4)
@@ -24,7 +22,7 @@ void	ft_sort_process(t_push_swap *ps)
 	else if (ps->stack_a.size == 5)
 		ft_sort_five(ps);
 	else
-		while (ft_can_continue(ps) == 0)
+		while (ft_can_continue(ps))
 			ft_sorting_process(ps);
 	return ;
 }
@@ -66,6 +64,6 @@ void	check_flag_status(t_push_swap *ps, int *flg_a, int *flg_b)
 int	ft_can_continue(t_push_swap *ps)
 {
 	if (ft_is_rev_sorted(&ps->stack_a.head) && ps->stack_b.size == 0)
-		return (1);
-	return (0);
+		exit(EXIT_SUCCESS);
+	return (1);
 }

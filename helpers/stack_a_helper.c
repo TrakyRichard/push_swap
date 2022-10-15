@@ -27,7 +27,7 @@ void	handle_stack_a_case_of_less_nbrs(t_push_swap *ps)
 		if (ps->stack_a.head->data > ps->stack_a.head->prev->data)
 		{
 			ps->stack_a.head->chunk = 0;
-			ft_swap_with_next_node(&ps->stack_a, "sa\n", &ps->nbre_of_swap);
+			ft_swap_with_next_node(&ps->stack_a, "sa\n");
 			ps->stack_a.head->chunk = 0;
 		}
 		else
@@ -41,7 +41,7 @@ void	handle_stack_a_case_of_less_nbrs(t_push_swap *ps)
 	return ;
 }
 
-void	retrieve_chunk_to_sort_of_a(t_push_swap *ps, int *flg_a, int *flg_b)
+void	retrieve_chunk_to_sort_of_a(t_push_swap *ps)
 {
 	ft_init_stack_bdle(&ps->chunk_to_sort);
 	ft_init_stack_bdle(&ps->sorted_stack);
@@ -61,15 +61,15 @@ void	retrieve_chunk_to_sort_of_a(t_push_swap *ps, int *flg_a, int *flg_b)
 	return ;
 }
 
-void	preliminary_of_stack_a(t_push_swap *ps, int *flg_a, int *flg_b)
+void	preliminary_of_stack_a(t_push_swap *ps)
 {
 	if (ft_is_rev_sorted(&ps->stack_a.head) == 0)
 	{
-		retrieve_chunk_to_sort_of_a(ps, flg_a, flg_b);
+		retrieve_chunk_to_sort_of_a(ps);
 		while ((ps->chunk_to_sort.size == 2 || ps->chunk_to_sort.size == 1))
 		{
 			handle_stack_a_case_of_less_nbrs(ps);
-			retrieve_chunk_to_sort_of_a(ps, flg_a, flg_b);
+			retrieve_chunk_to_sort_of_a(ps);
 		}
 		ps->sorted_stack = ft_r_sort(ps->chunk_to_sort);
 		ps->middle = ft_midpoint(ps->sorted_stack, ps->middle);

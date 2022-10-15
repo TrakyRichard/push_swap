@@ -9,7 +9,7 @@ SRCS = 	ft_printf.c \
 			src/ft_print_num.c \
 			src/ft_print_uns.c \
 
-CC = gcc
+CC = cc
 flgS = -g -Wall -Wextra -Werror
 
 OBJS = $(SRCS:.c=.o)

@@ -63,3 +63,29 @@ void	set_chunk_nbrs(t_stack_bdle *stack, int chunk_nbrs)
 	tmp->chunk = chunk_nbrs;
 	return ;
 }
+
+void	shifted_to_left(t_stack_bdle *left, t_stack_bdle *result)
+{
+	int				chunk;
+	int				data;
+
+	data = left->tail->data;
+	chunk = left->tail->chunk;
+	ft_push(result, data, chunk);
+	if (left->tail->next != NULL)
+		left->tail = left->tail->next;
+	return ;
+}
+
+void	shifted_to_right(t_stack_bdle *right, t_stack_bdle *result)
+{
+	int				chunk;
+	int				data;
+
+	data = right->tail->data;
+	chunk = right->tail->chunk;
+	ft_push(result, data, chunk);
+	if (right->tail->next != NULL)
+		right->tail = right->tail->next;
+	return ;
+}

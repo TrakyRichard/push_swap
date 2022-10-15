@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/12 02:21:22 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/15 07:19:53 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # include <unistd.h>
 # include <stddef.h>
+# include <stdlib.h>
 # include "./ft_printf/ft_printf.h"
 
 typedef struct s_node
@@ -27,7 +28,7 @@ typedef struct s_node
 	int				chunk;
 	struct s_node	*next;
 	struct s_node	*prev;
-}	t_node;
+}t_node;
 
 typedef struct s_stack_bdle
 {
@@ -85,6 +86,8 @@ void				get_chunk_to_sort_from_head(t_stack_bdle *chunk_to_sort, \
 void				get_chunk_to_sort_from_tail(t_stack_bdle *chunk_to_sort, \
 					int chunk, t_stack_bdle stack);
 void				set_chunk_nbrs(t_stack_bdle *stack, int chunk_nbrs);
+void				shifted_to_left(t_stack_bdle *left, t_stack_bdle *result);
+void				shifted_to_right(t_stack_bdle *right, t_stack_bdle *result);
 
 /* Helpers_two */
 int					is_chunks_sorted(t_push_swap *ps, int chunk_one, \
@@ -127,19 +130,19 @@ void				ft_split_to_get_chunk(t_stack_bdle *stack_ref_bdle, \
 
 /* Stack_a_helper */
 void				handle_stack_a_case_of_less_nbrs(t_push_swap *ps);
-void				retrieve_chunk_to_sort_of_a(t_push_swap *ps, \
-					int *flg_a, int *flg_b);
-void				preliminary_of_stack_a(t_push_swap *ps, \
-					int *flg_a, int *flg_b);
+void				retrieve_chunk_to_sort_of_a(t_push_swap *ps);
+void				preliminary_of_stack_a(t_push_swap *ps);
 
 /* Stack_b_helper */
 void				retrieve_chunk_to_sort_of_b(t_push_swap *ps);
-void				preliminary_of_stack_b(t_push_swap *ps, \
-					int *flg_a, int *flg_b);
+void				preliminary_of_stack_b(t_push_swap *ps);
 void				hndle_stk_b_case_of_less_nbrs(t_push_swap *ps);
-void				push_sorted_chunk_in_stack_a(t_push_swap *ps, \
-					int *flg_a, int *flg_b);
+void				push_sorted_chunk_in_stack_a(t_push_swap *ps);
 void				handle_stack_b_two_nbrs_case(t_push_swap *ps);
+
+/* Stack_b_helper_two */
+int					can_handle_b_small_cases(t_push_swap *ps);
+void				init_preliminary_of_b(t_push_swap *ps);
 
 /* Stack_ops */
 void				ft_unshift(t_stack_bdle *stack_bdle, \
@@ -150,21 +153,16 @@ int					ft_shift(t_stack_bdle *stack);
 
 /* moves */
 void				ft_top_x_to_top_y(t_stack_bdle *st_bdl_x, \
-					t_stack_bdle *st_bdl_y, char *inst, int *swap_nbrs);
+					t_stack_bdle *st_bdl_y, char *inst);
 void				ft_swap_with_next_node(t_stack_bdle *st_bdl, \
-					char *inst, int *swap_nbrs);
+					char *inst);
 void				ft_insert_before_tail(t_stack_bdle *st_bdl, \
 					int data, int chunk);
-void				ft_ss(t_stack_bdle *st_bdl_a, t_stack_bdle *st_bdl_b, \
-					int *swap_nbrs);
-void				ft_mvt_top_to_bottom(t_stack_bdle *st_bdl, char *inst, \
-					int *swap_nbrs);
-void				ft_rr(t_stack_bdle *st_bdl_a, t_stack_bdle *st_bdl_b, \
-					int *swap_nbrs);
-void				ft_mvt_bottom_to_top(t_stack_bdle *st_bdl_a, char *inst, \
-					int *swap_nbrs);
-void				ft_rrr(t_stack_bdle *st_bdl_a, t_stack_bdle *st_bdl_b, \
-					int *swap_nbrs);
+void				ft_ss(t_stack_bdle *st_bdl_a, t_stack_bdle *st_bdl_b);
+void				ft_mvt_top_to_bottom(t_stack_bdle *st_bdl, char *inst);
+void				ft_rr(t_stack_bdle *st_bdl_a, t_stack_bdle *st_bdl_b);
+void				ft_mvt_bottom_to_top(t_stack_bdle *st_bdl_a, char *inst);
+void				ft_rrr(t_stack_bdle *st_bdl_a, t_stack_bdle *st_bdl_b);
 
 /* Operations */
 void				ft_sort_process(t_push_swap *ps);
@@ -179,21 +177,18 @@ void				ft_stack_a_sorting_process(t_push_swap *ps, int *flg_a, \
 void				ft_reverse_stack_a(t_push_swap *ps);
 void				get_elements_reversed_of_stack_a_to_top(t_push_swap *ps, \
 					int chunk_nbrs);
-void				is_chunk_a_already_sorted(t_push_swap *ps, int *flg_a, \
-					int *flg_b);
-void				ft_push_to_stack_a(t_push_swap *ps, int *flg_a, int *flg_b);
+void				is_chunk_a_already_sorted(t_push_swap *ps);
+void				ft_push_to_stack_a(t_push_swap *ps);
 ;
 /* stack_b_sorting_process */
 void				ft_push_to_stack_b(t_push_swap *ps, int *flg_a, \
-					int *flg_b, int chunk_track);
-void				ft_reverse_stack_b(t_push_swap *ps, int *flg_a, \
-					int *flg_b);
+					int chunk_track);
+void				ft_reverse_stack_b(t_push_swap *ps);
 void				ft_stack_b_sorting_process(t_push_swap *ps, int *flg_a, \
 					int *flg_b);
 void				get_elts_reversed_of_stack_b_to_top(t_push_swap *ps, \
 					int chunk_nbrs);
-void				is_chunk_b_already_sorted(t_push_swap *ps, int *flg_a, \
-					int *flg_b);
+void				is_chunk_b_already_sorted(t_push_swap *ps);
 
 /* richard_sort */
 void				ft_sorted_insertion(t_node **tail, t_node *new_node);
@@ -212,5 +207,13 @@ void				ft_sort_five(t_push_swap *ps);
 void				ft_sort_four(t_push_swap *ps);
 void				hndle_mid_value_is_greatst(t_push_swap *ps);
 void				handle_head_is_greatst(t_push_swap *ps);
+
+/* Bonus */
+void				print_err_mess(void);
+void				print_suc_mess(void);
+void				can_terminate(t_push_swap *ps);
+void				step_processing(t_push_swap *ps, char *line);
+void				checker(int argc, char **argv);
+int					ft_strnumcmp(const char *s1, const char *s2, size_t n);
 
 #endif

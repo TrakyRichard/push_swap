@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/12 12:03:08 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/15 04:48:08 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	ft_parsing_two_args(int argc, char *argv[], t_push_swap *push_swap)
 {
 	int				i;
 	char			**str;
-	char			*current_char;
 	t_stack_bdle	*stack_a;
 
 	i = 0;
@@ -40,18 +39,19 @@ void	ft_parsing_two_args(int argc, char *argv[], t_push_swap *push_swap)
 	return ;
 }
 
-void ft_parsing_multiple_args(int argc, char **argv, t_push_swap *push_swap)
+void	ft_parsing_multiple_args(int argc, char **argv, t_push_swap *push_swap)
 {
-	int counter;
+	int				counter;
 	t_stack_bdle	*stack_a;
 
 	stack_a = &push_swap->stack_a;
 	counter = 1;
-	while (argv[counter] != NULL)
+	while (argc > counter)
 	{
 		if (ft_digit(argv[1]) == 1)
 			ft_error("Somes arguments are not digits \n");
-		if (ft_atoi(argv[counter]) > 2147483647 || ft_atoi(argv[counter]) < -2147483648)
+		if (ft_atoi(argv[counter]) > 2147483647 || \
+				ft_atoi(argv[counter]) < -2147483648)
 			ft_error(NULL);
 		ft_unshift(stack_a, ft_atoi(argv[counter]), 0);
 		counter++;
@@ -93,7 +93,6 @@ int	is_one_chunk_in_stack(t_node *stack, int chunk)
 /* Merge two stacks linked list */
 void	ft_bind_two_stacks(t_stack_bdle *stack_one, t_node *stack_two)
 {
-	t_stack_bdle	*tmp_stack;
 	t_node			*current;
 
 	current = stack_two;

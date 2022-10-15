@@ -6,7 +6,7 @@
 /*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:41:36 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/10 09:08:02 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/15 06:26:07 by rkanmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,41 @@
 
 /* Create a function that merge 2 sorted double linked
 list based on sorting algorithm */
+
+t_stack_bdle	ft_merge_process(t_stack_bdle *left, t_stack_bdle *right)
+{
+	t_stack_bdle	result;
+
+	ft_init_stack_bdle(&result);
+	while (left->tail != NULL && right->tail != NULL)
+	{
+		if (left->tail->data <= right->tail->data)
+		{
+			shifted_to_left(left, &result);
+			if (left->tail->next == NULL)
+			{
+				ft_insert_all_node(&result, right);
+				return (result);
+			}
+		}
+		else
+		{
+			shifted_to_right(right, &result);
+			if (right->tail->next == NULL)
+			{
+				ft_insert_all_node(&result, left);
+				return (result);
+			}
+		}
+	}
+	return (result);
+}
+
 t_stack_bdle	ft_merge(t_stack_bdle *left, t_stack_bdle *right)
 {
 	t_stack_bdle	result;
-	int				chunk;
-	int				data;
 
 	ft_init_stack_bdle(&result);
-	data = 0;
 	if (left->size == 0 && right->size == 0)
 		return (result);
 	if (left->size == 0 && right->size > 0)
@@ -34,36 +61,7 @@ t_stack_bdle	ft_merge(t_stack_bdle *left, t_stack_bdle *right)
 		ft_insert_all_node(&result, left);
 		return (result);
 	}
-	while (left->tail != NULL && right->tail != NULL)
-	{
-		if (left->tail->data <= right->tail->data)
-		{
-			data = left->tail->data;
-			chunk = left->tail->chunk;
-			ft_push(&result, data, chunk);
-			if (left->tail->next != NULL)
-				left->tail = left->tail->next;
-			else
-			{
-				ft_insert_all_node(&result, right);
-				return (result);
-			}
-		}
-		else
-		{
-			data = right->tail->data;
-			chunk = right->tail->chunk;
-			ft_push(&result, data, chunk);
-			if (right->tail->next != NULL)
-				right->tail = right->tail->next;
-			else
-			{
-				ft_insert_all_node(&result, left);
-				return (result);
-			}
-		}
-	}
-	return (result);
+	return (ft_merge_process(left, right));
 }
 
 void	init_it_m_sort_var(t_m_sort *m_sort, t_stack_bdle *st, \
