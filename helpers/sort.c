@@ -13,28 +13,13 @@
 #include "../push_swap.h"
 #include "../libft/libft.h"
 #include "../ft_printf/ft_printf.h"
-
-/* check if the stack is already sorted in decroissant order and return 0 */
-int	ft_is_rev_dec_sorted(t_node **head)
-{
-	t_node	*tmp;
-
-	tmp = *head;
-	while (tmp->prev != NULL)
-	{
-		if (tmp->data < tmp->prev->data)
-			return (0);
-		tmp = tmp->prev;
-	}
-	return (1);
-}
-
+/* Refacto finished */
 /* check if the stack is already sorted and return it */
-int	ft_is_rev_sorted(t_node **head)
+int	ft_is_rev_sorted(t_node **tail)
 {
 	t_node	*tmp;
 
-	tmp = *head;
+	tmp = *tail;
 	while (tmp->prev != NULL)
 	{
 		if (tmp->data > tmp->prev->data)
@@ -45,11 +30,11 @@ int	ft_is_rev_sorted(t_node **head)
 }
 
 /* check if the stack is already sorted and return it */
-int	ft_is_sorted(t_node **tail)
+int	ft_is_sorted(t_node **head)
 {
 	t_node	*tmp;
 
-	tmp = *tail;
+	tmp = *head;
 	while (tmp->next != NULL)
 	{
 		if (tmp->data > tmp->next->data)
@@ -66,11 +51,11 @@ int	is_the_grtst_from_head(t_node **stack, int number)
 	tmp = (*stack);
 	if (tmp == NULL)
 		return (1);
-	while (tmp->prev != NULL && tmp != NULL && tmp->data != number)
+	while (tmp->next != NULL && tmp != NULL && tmp->data != number)
 	{
 		if (tmp->data > number)
 			return (0);
-		tmp = tmp->prev;
+		tmp = tmp->next;
 	}
 	if (tmp != NULL && tmp->data > number)
 		return (0);

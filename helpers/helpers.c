@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/15 04:48:08 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/17 06:41:05 by richard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 #include "../libft/libft.h"
 #include "../ft_printf/ft_printf.h"
-
+/* Refacto finished but change a bit the ft_bind_two_stacks function */
 /* Read the number passed into the argv into the pushswap function */
 void	ft_parsing_two_args(int argc, char *argv[], t_push_swap *push_swap)
 {
@@ -98,7 +98,7 @@ void	ft_bind_two_stacks(t_stack_bdle *stack_one, t_node *stack_two)
 	current = stack_two;
 	if (current == NULL)
 		return ;
-	while (current != NULL && current->next != NULL)
+	while (current != NULL && current->prev != NULL)
 	{
 		ft_push(stack_one, current->data, current->chunk);
 		current = current->next;

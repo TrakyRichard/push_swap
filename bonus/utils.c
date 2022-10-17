@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 04:35:51 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/15 07:24:54 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/17 07:48:42 by richard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_strnumcmp(const char *s1, const char *s2, size_t n)
 
 void	can_terminate(t_push_swap *ps)
 {
-	if (ps->stack_b.size == 0 && ft_is_rev_sorted(&ps->stack_a.head))
+	if (ps->stack_b.size == 0 && ft_is_sorted(&ps->stack_a.head))
 		print_suc_mess();
 	print_err_mess();
 	return ;

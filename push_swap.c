@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:41:36 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/15 07:19:11 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/17 07:47:34 by richard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	push_swap(int argc, char **argv)
 	else if (argc > 2)
 		ft_parsing_multiple_args(argc, argv, &push_swap);
 	check_duplicate(&push_swap.stack_a);
-	if (ft_is_rev_sorted(&push_swap.stack_a.head))
+	if (ft_is_sorted(&push_swap.stack_a.head))
 		return ;
 	ft_sort_process(&push_swap);
 	free_push_swap(&push_swap);

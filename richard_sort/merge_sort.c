@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   merge_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:41:36 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/15 06:26:07 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/17 07:27:45 by richard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
+/* Refacto finished */
 /* Create a function that merge 2 sorted double linked
 list based on sorting algorithm */
 
@@ -20,12 +20,12 @@ t_stack_bdle	ft_merge_process(t_stack_bdle *left, t_stack_bdle *right)
 	t_stack_bdle	result;
 
 	ft_init_stack_bdle(&result);
-	while (left->tail != NULL && right->tail != NULL)
+	while (left->head != NULL && right->head != NULL)
 	{
-		if (left->tail->data <= right->tail->data)
+		if (left->head->data <= right->head->data)
 		{
 			shifted_to_left(left, &result);
-			if (left->tail->next == NULL)
+			if (left->head->next == NULL)
 			{
 				ft_insert_all_node(&result, right);
 				return (result);
@@ -34,7 +34,7 @@ t_stack_bdle	ft_merge_process(t_stack_bdle *left, t_stack_bdle *right)
 		else
 		{
 			shifted_to_right(right, &result);
-			if (right->tail->next == NULL)
+			if (right->head->next == NULL)
 			{
 				ft_insert_all_node(&result, left);
 				return (result);
@@ -79,13 +79,11 @@ t_stack_bdle	ft_iterative_merge_sort(t_stack_bdle *stack)
 {
 	t_m_sort		m_sort;
 	int				p;
-	int				i;
 	int				size;
 
 	init_it_m_sort_var(&m_sort, stack, &size, &p);
 	while (p <= size)
 	{
-		i = 0;
 		while (stack->size > 0)
 		{
 			ft_init_stack_bdle(&m_sort.left);

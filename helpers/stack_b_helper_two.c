@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   stack_b_helper_two.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 06:37:49 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/15 06:48:25 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/17 07:06:16 by richard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
+/* Refacto Finished */
 int	can_handle_b_small_cases(t_push_swap *ps)
 {
 	if (ps->stack_b.size == 2 || ps->stack_b.size == 1)
@@ -20,15 +20,15 @@ int	can_handle_b_small_cases(t_push_swap *ps)
 		return (1);
 	}
 	else if (ps->chunk_to_sort.size == 2 && is_the_grtst_from_head \
-			(&ps->stack_b.head->prev->prev, ps->stack_b.head->data) \
-			&& is_the_grtst_from_head(&ps->stack_b.head->prev->prev, \
-			ps->stack_b.head->prev->data))
+			(&ps->stack_b.head->next->next, ps->stack_b.head->data) \
+			&& is_the_grtst_from_head(&ps->stack_b.head->next->next, \
+			ps->stack_b.head->next->data))
 	{
 		hndle_stk_b_case_of_less_nbrs(ps);
 		return (1);
 	}
 	else if (ps->chunk_to_sort.size == 1 && is_the_grtst_from_head \
-			(&ps->stack_b.head->prev, ps->stack_b.head->data))
+			(&ps->stack_b.head->next, ps->stack_b.head->data))
 	{
 		hndle_stk_b_case_of_less_nbrs(ps);
 		return (1);

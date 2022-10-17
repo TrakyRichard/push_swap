@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exception.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/15 07:22:42 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/17 07:36:28 by richard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 #include "../libft/libft.h"
-
+/* Refacto finished */
 /* Function that just write error followed by a new line */
 void	ft_error(char *str)
 {
@@ -28,8 +28,11 @@ void	ft_error(char *str)
 
 void	can_finished_process(t_push_swap *ps)
 {
-	if (ps->stack_b.size == 0 && ft_is_rev_sorted(&ps->stack_a.head))
+	if (ps->stack_b.size == 0 && ft_is_sorted(&ps->stack_a.head))
+	{
+		ft_display_stack(ps->stack_a.head);
 		exit(EXIT_SUCCESS);
+	}
 	return ;
 }
 
@@ -38,7 +41,7 @@ void	check_duplicate(t_stack_bdle *stack)
 	t_node	*tmp;
 	t_node	*tmp2;
 
-	tmp = stack->tail;
+	tmp = stack->head;
 	while (tmp)
 	{
 		tmp2 = tmp->next;

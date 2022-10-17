@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/15 04:42:31 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/17 05:12:21 by richard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 #include "../libft/libft.h"
 #include "../ft_printf/ft_printf.h"
-
+/* Refacto finished */
 /* function that take the element on top of st_bdl_b and put it on st_bdl_a */
 void	ft_top_x_to_top_y(t_stack_bdle *st_bdl_x, \
 		t_stack_bdle *st_bdl_y, char *inst)
@@ -46,8 +46,8 @@ void	ft_swap_with_next_node(t_stack_bdle *st_bdl, \
 		return ;
 	tmp1 = st_bdl->head->data;
 	chunk1 = st_bdl->head->chunk;
-	tmp2 = st_bdl->head->prev->data;
-	chunk2 = st_bdl->head->prev->chunk;
+	tmp2 = st_bdl->head->next->data;
+	chunk2 = st_bdl->head->next->chunk;
 	ft_pop(st_bdl);
 	ft_pop(st_bdl);
 	ft_push(st_bdl, tmp1, chunk1);
@@ -57,8 +57,8 @@ void	ft_swap_with_next_node(t_stack_bdle *st_bdl, \
 	return ;
 }
 
-/* Insert after function */
-void	ft_insert_before_tail(t_stack_bdle *st_bdl, int data, int chunk)
+/* Insert before function */
+void	ft_insert_before_head(t_stack_bdle *st_bdl, int data, int chunk)
 {
 	t_node	*new_node;
 
@@ -67,13 +67,8 @@ void	ft_insert_before_tail(t_stack_bdle *st_bdl, int data, int chunk)
 		ft_error(NULL);
 	new_node->data = data;
 	new_node->chunk = chunk;
-	if (st_bdl->head->prev != NULL)
-		new_node->prev = st_bdl->head->prev->next;
-	else
-		new_node->prev = NULL;
+	new_node->prev = NULL;
 	new_node->next = st_bdl->head;
-	if (st_bdl->head->prev != NULL)
-		st_bdl->head->prev->next = new_node;
 	st_bdl->head->prev = new_node;
 	st_bdl->size++;
 	return ;

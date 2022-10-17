@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 22:12:10 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/15 06:00:13 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/17 07:47:53 by richard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	main(int argc, char **argv)
 	else
 		ft_error(NULL);
 	check_duplicate(&push_swap.stack_a);
-	if (ft_is_rev_sorted(&push_swap.stack_a.head))
+	if (ft_is_sorted(&push_swap.stack_a.head))
 		print_suc_mess();
 	line = get_next_line(0);
 	retrieve_line(&push_swap, line);

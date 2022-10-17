@@ -13,7 +13,7 @@
 #include "../push_swap.h"
 #include "../libft/libft.h"
 #include "../ft_printf/ft_printf.h"
-
+/* Refacto finished */
 /* Initialise the stack */
 void	ft_init_push_swap_stack(t_push_swap *push_swap)
 {
@@ -34,8 +34,8 @@ void	ft_init_push_swap_stack(t_push_swap *push_swap)
 /* initialize stack bundle */
 void	ft_init_stack_bdle(t_stack_bdle *stack)
 {
-	stack->tail = NULL;
 	stack->head = NULL;
+	stack->tail = NULL;
 	stack->size = 0;
 	return ;
 }
@@ -46,27 +46,27 @@ t_stack_bdle	ft_duplicate_stack(t_stack_bdle *stack)
 	t_stack_bdle	new_stack;
 	t_node			*current;
 
-	new_stack.tail = NULL;
 	new_stack.head = NULL;
+	new_stack.tail = NULL;
 	new_stack.size = 0;
 	current = stack->tail;
 	if (current == NULL)
 		return (new_stack);
-	while (current != NULL && current->next != NULL)
+	while (current != NULL && current->prev != NULL)
 	{
 		ft_push(&new_stack, current->data, current->chunk);
-		current = current->next;
+		current = current->prev;
 	}
 	ft_push(&new_stack, current->data, current->chunk);
 	return (new_stack);
 }
 
 /* Display the informations into stack a */
-void	ft_rev_stack(t_node *head)
+void	ft_rev_stack(t_node *tail)
 {
 	t_node	*tmp;
 
-	tmp = head;
+	tmp = tail;
 	while (tmp != NULL)
 	{
 		ft_putnbr_fd(tmp->data, 1);

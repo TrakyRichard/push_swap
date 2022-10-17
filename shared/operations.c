@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 08:14:27 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/15 07:08:13 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/17 05:00:54 by richard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 #include "../libft/libft.h"
-
+/* Refacto finished */
 void	ft_sort_process(t_push_swap *ps)
 {
 	if (ps->stack_a.size == 3)
@@ -42,7 +42,7 @@ void	ft_sorting_process(t_push_swap *ps)
 void	check_flag_status(t_push_swap *ps, int *flg_a, int *flg_b)
 {
 	can_finished_process(ps);
-	if (ps->stack_b.size == 0 && ft_is_rev_sorted(&ps->stack_a.tail))
+	if (ps->stack_b.size == 0 && ft_is_sorted(&ps->stack_a.head))
 	{
 		*flg_a = 1;
 		*flg_b = 1;
@@ -52,7 +52,7 @@ void	check_flag_status(t_push_swap *ps, int *flg_a, int *flg_b)
 		*flg_a = 1;
 		*flg_b = 0;
 	}
-	if (ps->stack_b.size > 0 && ft_is_rev_sorted(&ps->stack_a.head))
+	if (ps->stack_b.size > 0 && ft_is_sorted(&ps->stack_a.head))
 	{
 		set_chunk_nbrs(&ps->stack_a, 0);
 		*flg_a = 0;
@@ -63,7 +63,7 @@ void	check_flag_status(t_push_swap *ps, int *flg_a, int *flg_b)
 
 int	ft_can_continue(t_push_swap *ps)
 {
-	if (ft_is_rev_sorted(&ps->stack_a.head) && ps->stack_b.size == 0)
+	if (ft_is_sorted(&ps->stack_a.head) && ps->stack_b.size == 0)
 		exit(EXIT_SUCCESS);
 	return (1);
 }
