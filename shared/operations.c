@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 08:14:27 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/17 05:00:54 by richard          ###   ########.fr       */
+/*   Updated: 2022/10/19 04:13:28 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 #include "../libft/libft.h"
-/* Refacto finished */
+
 void	ft_sort_process(t_push_swap *ps)
 {
 	if (ps->stack_a.size == 3)

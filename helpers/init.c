@@ -13,12 +13,11 @@
 #include "../push_swap.h"
 #include "../libft/libft.h"
 #include "../ft_printf/ft_printf.h"
-/* Refacto finished */
+
 /* Initialise the stack */
 void	ft_init_push_swap_stack(t_push_swap *push_swap)
 {
 	push_swap->middle = 0;
-	push_swap->nbre_of_swap = 0;
 	push_swap->middle = malloc(sizeof(t_middle));
 	if (push_swap->middle == NULL)
 		ft_error(NULL);

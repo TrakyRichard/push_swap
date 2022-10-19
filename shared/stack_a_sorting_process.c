@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   stack_a_sorting_process.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/17 04:42:54 by richard          ###   ########.fr       */
+/*   Updated: 2022/10/19 04:13:47 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 #include "../libft/libft.h"
-/* Refacto finished */
+
 void	ft_stack_a_sorting_process(t_push_swap *ps, int *flg_a, int *flg_b)
 {
 	int	chunk_track;

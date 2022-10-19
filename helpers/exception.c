@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 #include "../libft/libft.h"
-/* Refacto finished */
+
 /* Function that just write error followed by a new line */
 void	ft_error(char *str)
 {

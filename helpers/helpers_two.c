@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 #include "../libft/libft.h"
-/* Refacto finished */
+
 /* function to insert all elements for one list to another */
 void	ft_insert_all_node(t_stack_bdle *stack, t_stack_bdle *stack_to_insert)
 {
@@ -23,10 +23,10 @@ void	ft_insert_all_node(t_stack_bdle *stack, t_stack_bdle *stack_to_insert)
 		return ;
 	while (current != NULL && current->next != NULL)
 	{
-		ft_push(stack, current->data, current->chunk);
+		ft_unshift(stack, current->data, current->chunk);
 		current = current->next;
 	}
-	ft_push(stack, current->data, current->chunk);
+	ft_unshift(stack, current->data, current->chunk);
 	return ;
 }
 

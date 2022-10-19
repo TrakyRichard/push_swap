@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/17 07:02:23 by richard          ###   ########.fr       */
+/*   Updated: 2022/10/19 04:28:39 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ typedef struct s_push_swap
 	t_stack_bdle	sorted_stack;
 	t_stack_bdle	chunk_to_sort;
 	t_middle		*middle;
-	int				nbre_of_swap;
 }	t_push_swap;
 
 void				push_swap(int argc, char **argv);
