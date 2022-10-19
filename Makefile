@@ -20,8 +20,8 @@ BONUSRCS = ./bonus/checker.c ./bonus/move.c ./bonus/utils.c ./bonus/get_next_lin
 OBJS = $(SRCS:.c=.o)
 BONUSOBJS = $(BONUSRCS:.c=.o)
 
-CC = cc
-flgS = -g -Wall -Wextra -Werror
+CC = gcc
+flgS = -g 
 
 
 $(NAME) : $(OBJS)

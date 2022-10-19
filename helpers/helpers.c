@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/17 06:41:05 by richard          ###   ########.fr       */
+/*   Updated: 2022/10/17 08:39:06 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,11 @@ void	ft_bind_two_stacks(t_stack_bdle *stack_one, t_node *stack_two)
 	current = stack_two;
 	if (current == NULL)
 		return ;
-	while (current != NULL && current->prev != NULL)
+	while (current != NULL && current->next != NULL)
 	{
-		ft_push(stack_one, current->data, current->chunk);
+		ft_unshift(stack_one, current->data, current->chunk);
 		current = current->next;
 	}
-	ft_push(stack_one, current->data, current->chunk);
+	ft_unshift(stack_one, current->data, current->chunk);
 	return ;
 }

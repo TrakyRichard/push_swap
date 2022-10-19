@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/17 05:12:21 by richard          ###   ########.fr       */
+/*   Updated: 2022/10/19 04:13:28 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 #include "../libft/libft.h"
 #include "../ft_printf/ft_printf.h"
-/* Refacto finished */
+
 /* function that take the element on top of st_bdl_b and put it on st_bdl_a */
 void	ft_top_x_to_top_y(t_stack_bdle *st_bdl_x, \
 		t_stack_bdle *st_bdl_y, char *inst)

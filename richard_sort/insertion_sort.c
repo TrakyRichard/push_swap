@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   insertion_sort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richard <richard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:41:36 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/17 05:55:43 by richard          ###   ########.fr       */
+/*   Updated: 2022/10/19 04:13:28 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-/* Refacto finished */
+
 /* Create a function that will insert element in a sorting index */
 void	ft_sorted_insertion(t_node **head, t_node *new_node)
 {

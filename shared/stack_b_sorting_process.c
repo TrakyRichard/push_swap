@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 #include "../libft/libft.h"
-/* Refacto finished */
+
 void	ft_reverse_stack_b(t_push_swap *ps)
 {
 	int	tail;
@@ -21,8 +21,8 @@ void	ft_reverse_stack_b(t_push_swap *ps)
 		return ;
 	tail = ps->stack_b.tail->data;
 	while (ps->stack_b.head->data < ps->middle->value && \
-		ps->chunk_to_sort.head->chunk == ps->stack_b.head->chunk \
-		&& ps->middle->size >= -1)
+		   ps->chunk_to_sort.head->chunk == ps->stack_b.head->chunk \
+		   && ps->middle->size >= -1)
 	{
 		ft_mvt_top_to_bottom(&ps->stack_b, "rb\n");
 		ps->middle->size--;
@@ -76,10 +76,10 @@ void	ft_stack_b_sorting_process(t_push_swap *ps, int *flg_a, int *flg_b)
 
 void	is_chunk_b_already_sorted(t_push_swap *ps)
 {
-	while (ft_is_sorted(&ps->chunk_to_sort.head))
+	while (ft_is_rev_sorted(&ps->chunk_to_sort.tail))
 	{
-		while (ps->chunk_to_sort.size > 0 && \
-			ft_is_sorted(&ps->stack_a.head))
+		while (ps->chunk_to_sort.size > 0 &&
+			   ft_is_sorted(&ps->stack_a.head))
 		{
 			can_finished_process(ps);
 			ps->stack_b.head->chunk = 0;

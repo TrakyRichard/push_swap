@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 #include "../libft/libft.h"
-/* Refacto finished */
+
 /* add all data into the stack with the same chunk number */
 void	get_chunk_to_sort_from_tail(t_stack_bdle *chunk_to_sort, \
 			int chunk, t_stack_bdle stack)
@@ -71,9 +71,8 @@ void	shifted_to_left(t_stack_bdle *left, t_stack_bdle *result)
 
 	data = left->head->data;
 	chunk = left->head->chunk;
-	ft_push(result, data, chunk);
-	if (left->head->next != NULL)
-		left->head = left->head->next;
+	ft_unshift(result, data, chunk);
+	ft_pop(left);
 	return ;
 }
 
@@ -84,8 +83,7 @@ void	shifted_to_right(t_stack_bdle *right, t_stack_bdle *result)
 
 	data = right->head->data;
 	chunk = right->head->chunk;
-	ft_push(result, data, chunk);
-	if (right->head->next != NULL)
-		right->head = right->head->next;
+	ft_unshift(result, data, chunk);
+	ft_pop(right);
 	return ;
 }
