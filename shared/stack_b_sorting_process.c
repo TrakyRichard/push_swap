@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_b_sorting_process.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/19 15:33:51 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/20 11:10:05 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,11 @@ void	ft_reverse_stack_b(t_push_swap *ps)
 	tail = ps->stack_b.tail->data;
 	while (ps->stack_b.head->data < ps->middle->value && \
 		ps->chunk_to_sort.head->chunk == ps->stack_b.head->chunk \
-		&& ps->middle->size >= -1 && ps->stack_b.size > 1)
+		&& ps->middle->size > -1 && ps->stack_b.size > 1)
 	{
 		ft_mvt_top_to_bottom(&ps->stack_b, "rb\n");
 		if (tail == ps->stack_b.head->data)
-		{
-			preliminary_of_stack_b(ps);
 			break;
-		}
 	}
 	return ;
 }
