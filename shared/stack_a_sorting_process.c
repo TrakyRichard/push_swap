@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_a_sorting_process.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkanmado <rkanmado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 03:01:21 by rkanmado          #+#    #+#             */
-/*   Updated: 2022/10/19 15:33:34 by rkanmado         ###   ########.fr       */
+/*   Updated: 2022/10/20 10:23:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_stack_a_sorting_process(t_push_swap *ps, int *flg_a, int *flg_b)
 	while (*flg_a && *flg_b == 0 && ft_is_sorted(&ps->stack_a.head) == 0)
 	{
 		preliminary_of_stack_a(ps);
-		is_chunk_a_already_sorted(ps);
 		check_flag_status(ps, flg_a, flg_b);
 		chunk_track++;
 		while (ps->middle->size > 1 && *flg_a)

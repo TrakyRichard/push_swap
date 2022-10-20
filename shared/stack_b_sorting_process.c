@@ -22,14 +22,13 @@ void	ft_reverse_stack_b(t_push_swap *ps)
 	tail = ps->stack_b.tail->data;
 	while (ps->stack_b.head->data < ps->middle->value && \
 		ps->chunk_to_sort.head->chunk == ps->stack_b.head->chunk \
-		&& ps->middle->size >= -1)
+		&& ps->middle->size >= -1 && ps->stack_b.size > 1)
 	{
 		ft_mvt_top_to_bottom(&ps->stack_b, "rb\n");
-		ps->middle->size--;
 		if (tail == ps->stack_b.head->data)
 		{
 			preliminary_of_stack_b(ps);
-			break ;
+			break;
 		}
 	}
 	return ;
@@ -43,6 +42,7 @@ void	ft_push_to_stack_a(t_push_swap *ps)
 		&& ps->stack_b.head->chunk == ps->chunk_to_sort.head->chunk)
 	{
 		ft_top_x_to_top_y(&ps->stack_b, &ps->stack_a, "pa\n");
+		ps->middle->size--;
 		if (ps->stack_b.size == 0)
 			break ;
 	}
@@ -63,11 +63,6 @@ void	ft_stack_b_sorting_process(t_push_swap *ps, int *flg_a, int *flg_b)
 			ft_reverse_stack_b(ps);
 			if (ps->stack_b.size == 0)
 				return ;
-			if (ps->stack_b.size == 1 || ps->stack_b.size == 2)
-			{
-				preliminary_of_stack_b(ps);
-				check_flag_status(ps, flg_a, flg_b);
-			}
 		}
 		check_flag_status(ps, flg_a, flg_b);
 	}
